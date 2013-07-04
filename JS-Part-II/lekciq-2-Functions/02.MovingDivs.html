@@ -1,0 +1,187 @@
+<html>
+	<head>
+		<title>Create a module that works with moving div elements.
+				Implement functionality for:
+		</title>
+		<style>
+		#container{
+			width : 400px;
+			height: 200px;
+			background:rgb(159,159,159);
+			margin:20px;
+			position: relative;
+		}
+		#square{
+			width:100px;
+			height: 100px;
+			background: rgb(220,220,220);
+			position: absolute;
+			top:30px;
+			left: 30px;
+		}
+		#circle{
+			width:100px;
+			height: 100px;
+			background: rgb(220,220,220);
+			position: absolute;
+			top:30px;
+			left: 160px;
+			border-radius: 50px;
+		}
+		</style>
+	</head>
+	<body>
+		<div >
+			<p>1.Add new moving div element to the DOM
+				-The module should generate random background, font and border colors
+				-All the div elements are with the same width and height.</p>
+			<p>2.The movements of the div elements can be either circular or rectangular.</p>
+			<p>3.The elements should be moving all the time.</p>
+		</div>
+		<input type="button" onclick="addRect()" value = "Add Rectangle"/>
+		<input type="button" onclick="addEllipse()" value = "Add Ellipse"/>
+		<div id = "container">
+			<div id = "square"></div>
+			<div id = "circle"></div>
+		</div>
+		
+		<script>
+		var movingShapes = (function() {
+				speedXRect = [];
+				speedYRect  =[];
+			
+			 
+			 function add (shape) {
+			 	if (shape === "rect") {
+			 		var div = createDivElement();
+			 		div.style.top = 20;
+			 		div.style.left = 20;
+			 		document.getElementById("container").appendChild(div);
+			 		rectMovement();
+			 		var timer;
+			 		var step = 0;
+			 		timer = setInterval(function() {
+			 			if (step === 404) {step = 0;}
+			 			div.style.top = speedXRect[step];
+			 			div.style.left = speedYRect[step];
+			 			step++;
+			 		},10);
+
+			 		function rectMovement () {
+			 			// top side
+			 			var topSideOfSquareXCoord = [];
+			 			var topSideOfSquareYCoord = [];
+			 			for (var i = 0; i < 101; i++) {
+			 				//x start coord = (0 + 20) px 
+			 				topSideOfSquareXCoord[i] = i+20;
+			 				speedXRect[i] = topSideOfSquareXCoord[i];
+			 				topSideOfSquareYCoord[i] = 20;
+			 				speedYRect[i] = topSideOfSquareYCoord[i];
+			 			}
+
+			 			//right side 
+			 			var rightSideOfSquareXCoord = [];
+			 			var rightSideOfSquareYCoord = [];
+			 			for (var i = 0; i < 101; i++) {
+			 				//x start coord = (0 + 20) px 
+			 				rightSideOfSquareXCoord[i] = topSideOfSquareXCoord[100];
+			 				speedXRect[101+i] = rightSideOfSquareXCoord[i];
+			 				rightSideOfSquareYCoord[i] = i + 1 + 20;
+			 				speedYRect[101+i] = rightSideOfSquareYCoord[i];
+			 			}
+
+			 			//bottom side 
+			 			var bottomSideOfSquareXCoord = [];
+			 			var bottomSideOfSquareYCoord = [];
+			 			for (var i = 0; i < 101; i++) {
+			 				//x start coord = (0 + 20) px 
+			 				bottomSideOfSquareXCoord[i] = rightSideOfSquareXCoord[100] - i - 1;
+			 				speedXRect[202+i] = bottomSideOfSquareXCoord[i];
+			 				bottomSideOfSquareYCoord[i] = rightSideOfSquareYCoord[100];
+			 				speedYRect[202+i] = bottomSideOfSquareYCoord[i];
+			 			}
+
+			 			//pleft side
+			 			var leftSideOfSquareXCoord = [];
+			 			var leftSideOfSquareYCoord = [];
+			 			for (var i = 0; i < 101; i++) {
+			 				//x start coord = (0 + 20) px 
+			 				leftSideOfSquareXCoord[i] = bottomSideOfSquareXCoord[100];
+			 				speedXRect[303+i] = leftSideOfSquareXCoord[i];
+			 				leftSideOfSquareYCoord[i] = bottomSideOfSquareYCoord[100]- 1 - i;
+			 				speedYRect[303+i] = leftSideOfSquareYCoord[i];
+			 			}
+			 		}
+
+			 	}else if (shape === "ellipse"){
+			 		var div = createDivElement();
+			 		div.style.borderRadius = 20;
+			 		div.style.top = 80;
+			 		div.style.left =210;
+
+			 		document.getElementById("container").appendChild(div);
+
+			 		var xM = 200;
+					var yM = 65;
+					var radius = 50;
+					var interval = 0;//degrees
+			 		
+					var timer;
+					timer = setInterval(function() {
+						if (interval === 360) {interval = 0;}
+						div.style.left = shiftLeftPosition(0, interval);
+						div.style.top = shiftTopPosition(0, interval);
+						interval++;
+					},10);
+
+			 		function shiftLeftPosition(cosFiStart, interval){
+						var positionLeft = 
+						xM + radius * Math.cos((cosFiStart + interval) * (Math.PI / 180));
+						return positionLeft;
+					}	
+
+					function shiftTopPosition(sinFiStart, interval){
+						var positionTop = 
+						yM + radius * Math.sin((sinFiStart + interval) * (Math.PI / 180));
+						return positionTop;
+					}
+			 	}else {alert("Problem with the shape");}
+			 }
+
+			 function createDivElement () {
+			 	var newDiv = document.createElement("div");
+			 	newDiv.style.width = 20;
+			 	newDiv.style.height = 20;
+			 	newDiv.style.background =  generateColor();
+			 	newDiv.style.color = generateColor();
+			 	newDiv.style.borderStyle = "solid";
+			 	newDiv.style.borderWidth = 2;
+			 	newDiv.style.borderColor = generateColor();
+			 	newDiv.style.position ="absolute";
+
+			 	function generateColor () {
+			 		var red = parseInt(Math.random()*255,10);
+					var green = parseInt(Math.random()*255,10);
+					var blue = parseInt(Math.random()*255,10);
+					var color = "rgb("+red+","+green+","+blue+")";
+					return color + "";
+			 	}
+
+			 	return newDiv;
+			 }
+			return {
+				add:add
+			}
+		}());
+		//movingShapes.add("rect");
+
+		function addRect(){
+			movingShapes.add("rect");
+		}
+		
+		function addEllipse(){
+			movingShapes.add("ellipse")
+		}
+		</script>
+	</body>
+</html>

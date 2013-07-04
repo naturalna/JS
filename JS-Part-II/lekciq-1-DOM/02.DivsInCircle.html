@@ -1,0 +1,93 @@
+<html>
+	<head>
+		<title>Five divs in a circle</title>
+	</head>
+	<body>
+		<div id = "condition">
+			<p>Write a script that creates 5 div elements and moves them in circular path with interval of 100 millisecond</p>
+		</div>
+		<input type="button" value = "start" onclick ="startMoveInCircle()">
+
+		<div id ="wrapper">
+		</div>
+		<script>
+			var positionsLeft = [400,480,460,340,320];
+			var positionsTop = [100,170,260,260,150];
+
+			var div1 = document.createElement("div");
+			createStyle(div1);
+			div1.style.background = "red";
+			var div2 = document.createElement("div");
+			createStyle(div2);
+			div2.style.background = "green";
+			var div3 = document.createElement("div");
+			createStyle(div3);
+			div3.style.background ="blue";
+			var div4 = document.createElement("div");
+			createStyle(div4);
+			div4.style.background = "yellow";
+			var div5 = document.createElement("div");
+			createStyle(div5);
+			div5.style.background = "black";
+			var timer;
+			function startMoveInCircle(){
+				timer = setInterval(function() {
+				positionsLeft = shiftLeftPosition(positionsLeft);
+				positionsTop = shiftTopPosition(positionsTop);
+				//alert(positionsTop);
+				loadDivPosition(positionsLeft, positionsTop);
+
+				var divFragment = document.createDocumentFragment();
+
+				divFragment.appendChild(div1);
+				divFragment.appendChild(div2);
+				divFragment.appendChild(div3);
+				divFragment.appendChild(div4);
+				divFragment.appendChild(div5);
+				document.getElementById("wrapper").appendChild(divFragment);
+				}, 100);
+			}
+
+			function createStyle(div){
+				div.style.width = 30;
+				div.style.height = 30;
+				div.style.position ="absolute";
+			}
+
+			function loadDivPosition(positionLeft, positionTop){
+				div1.style.left = positionLeft[0];
+				div1.style.top = positionTop[0];
+				div2.style.left = positionLeft[1];
+				div2.style.top = positionTop[1];
+				div3.style.left = positionLeft[2];
+				div3.style.top = positionTop[2];
+				div4.style.left = positionLeft[3];
+				div4.style.top = positionTop[3];
+				div5.style.left = positionLeft[4];
+				div5.style.top = positionTop[4];
+			}	
+
+			// This functions will shift the positions of the divs with 1 cell and the last position
+			// will be removed and put at first cell of the container (array)
+			function shiftLeftPosition(positionsLeft){
+				var newPositions = [];
+				newPositions.push(positionsLeft[4]);
+				for (var i = 0; i <= 3; i++) {
+					newPositions.push(positionsLeft[i]);
+				}
+				return newPositions;
+			}	
+
+			function shiftTopPosition(positionsTop){
+				var newPositions = [];
+				newPositions.push(positionsTop[4]);
+				for (var i = 0; i <= 3; i++) {
+					newPositions.push(positionsTop[i]);
+				}
+				return newPositions;
+			}
+			
+		</script>
+	</body>
+	
+</html>

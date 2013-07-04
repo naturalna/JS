@@ -1,0 +1,34 @@
+http://localhost:22954/api/user/register
+
+{
+ "username":"myglata",
+ "nickname":"myglata",
+ "authCode":"9aab5aedfa56b93dd9e035ff2ecd2215a148e3d9"
+}
+pass - benfranklin 
+
+sessionKey=20nJHKuJTnCWHFaeaV5RFeMv6N8OqUvrh1O0vX8n9n4xzwu3zE
+
+http://localhost:22954/api/user/scores/20nJHKuJTnCWHFaeaV5RFeMv6N8OqUvrh1O0vX8n9n4xzwu3zE
+
+///get all messages 
+
+http://localhost:22954/api/messages/all/20nJHKuJTnCWHFaeaV5RFeMv6N8OqUvrh1O0vX8n9n4xzwu3zE
+
+
+// create game 
+
+http://localhost:22954/api/game/create/21lT9RBLY1xdzKx8z6RHjoAoz7Kdpi56QjoZGQ9Vl3jlEuerXm
+
+{
+"title":"The Return of the Jedi",
+}
+
+// join game 
+
+{
+ "id": 19,
+ "password": "3b0995f19c6539af566fa34cb32823b652f37715" 
+ (password is necessary only if the creator has set a password and can be omitted otherwise)
+}
+

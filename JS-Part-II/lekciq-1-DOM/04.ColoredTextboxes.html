@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>text area and two inputs with type="color"</title>
+	</head>
+	<body>
+		<div id = "condition">
+			<p>Create a text area and two inputs with type="color"
+			Make the font color of the text area as the value of the first color input
+			Make the background color of the text area as the value of the second input.
+			It is working only in chrome !!!
+			</p>
+		</div>
+		<p>Put your text here</p>
+		<textarea id="text" cols="30" rows="10"></textarea>
+		<p>Font color</p>
+		<input type="color" id="fontColor">
+		<p>Background color</p>
+		<input type="color" id ="backgroundColor">
+		<input type="button" value = "start" onclick ="onLoadColores()">
+		<script>
+			function onLoadColores(){
+				var fontColor = document.getElementById("fontColor").value;
+				var background = document.getElementById("backgroundColor").value;
+				var text = document.getElementById("text");
+				text.style.color = fontColor;
+				text.style.background = background;
+			}
+		</script>
+	</body>
+	
+</html>

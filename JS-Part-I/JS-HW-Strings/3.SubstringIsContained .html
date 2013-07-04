@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>substring is contained 
+</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+		<input type="button" onclick ="ConteainSub()" value="See">
+		<input type="button" onclick ="ConteainSub()" value="See2">
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+	function ConteainSub() 
+	{
+		String.prototype.containedInsensitive = function(text)
+		{
+			var newStr = this.toLowerCase();
+       
+			var key = text.toLowerCase();
+            var index = newStr.indexOf(key);
+			var count = 0;
+			do
+			{
+				index = newStr.indexOf(key);
+				if (index != -1) {
+					count++;
+					newStr = newStr.substr(index+1,newStr.length);
+                  console.log(newStr);
+				}
+
+			}while(index != -1);
+          return count;
+		};
+		var str = "in bin Inbbbin";
+		jsConsole.writeLine(str);
+		jsConsole.writeLine(str.containedInsensitive("in"));
+		String.prototype.containedInsensitive2 = function(text)
+		{
+			var newStr = this.toLowerCase();
+			var key = text.toLowerCase();
+            var index = -2;// first index starts with 0
+			var count = -1;
+			do
+			{
+				// if the first index is different than -1
+				if (index != -1) {
+					count++;
+					index = newStr.indexOf(key,index+1);//next start of search is from position index + 1
+                  console.log(index);
+                }
+
+			}while(index != -1);
+          return count;
+		};
+		var str2 = "in bin Inbbbin";
+		jsConsole.writeLine(str2);
+		jsConsole.writeLine(str2.containedInsensitive2("in"));
+	}										
+	</script>			  
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>reverse strings</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+		<input type="button" onclick ="ask()" value="REVERSE">
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+function Solve(args) 
+	{
+		    var boolArr = [];
+		    var my = args[0].split(", ");
+    for (var i = 0; i < my.length; i++) {
+       boolArr[i] = true;
+        my[i] = parseInt(my[i],10);
+    }
+    var maxCount = 0;
+    var count = 1;
+    
+    var l = 0;
+    for (var jump = 1; jump < my.length; jump++) {
+        var nj = jump;
+        var startPositon = -1;
+        do {
+            startPositon++;
+            var position = startPositon;
+            do {
+                if (position + nj > my.length - 1) {
+                    nj = (my.length - 1 -nj)*-1;
+                }
+                if (boolArr[position] !== true || (my[position + nj] <= my[position])) {
+                    break;
+                } else {
+                    count++;
+                    boolArr[position] = false;
+                   //boolArr[position+nj] = false;
+                    position = position + nj;
+                }
+            } while (startPositon < my.length-1);//2
+            if (count > maxCount) {
+                maxCount = count;
+                l = new Number(jump) ;
+            }
+            count = 1;
+            for (var c = 0; c < my.length; c++) {
+       			boolArr[i] = true;
+        		//args[i] = parseInt(args[i],10);
+    		}
+        } while (startPositon < my.length-1);
+    }
+    //jsConsole.writeLine(l);
+    jsConsole.writeLine(maxCount);
+    return maxCount;
+	}	
+	function ask()
+	{
+		Solve(["1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0"]);
+	}									
+	</script>			  
+</body>
+</html>

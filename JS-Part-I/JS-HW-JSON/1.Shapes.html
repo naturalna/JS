@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>shapes</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+		<input type="button" onclick ="ShapeObj()" value="Calc">
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+	function ShapeObj() 
+	{
+		// make object with points X and Y
+		function Point(X,Y)
+		{
+			return{
+				pointX : X,
+				pointY : Y,
+				Distance : function(secondPoint)
+							{
+								var ans = Math.sqrt(Math.pow(secondPoint.pointX - this.pointX,2) +
+									Math.pow(secondPoint.pointY - this.pointY,2));
+								return ans ;
+							}
+			};
+		}
+		var FPoint = Point(0,0);
+		var SPoint = Point(1,1);
+		var dis = FPoint.Distance(SPoint);
+		jsConsole.write("Distance between Point1 and Point2 is : ")
+		jsConsole.writeLine(dis);
+		// constructor for line
+		function Line(point1, point2)
+		{
+			return{
+				length : point1.Distance(point2),
+				posibleTriangle : function(line2,line3){
+					if (this.length < line2.length + line3.length &&
+						line2.length < this.length + line3.length &&
+						line3.length < this.length + line2.length) 
+					{
+						return true;
+					}else{
+						return false;
+					}
+				}
+			};
+		}
+		
+		var line1 = Line(Point(0,0),Point(0,0));
+		var line2 = Line(Point(4,4),Point(3,2));
+		var line3 = Line(Point(7,4),Point(3,8));
+		var isTrue = line1.posibleTriangle(line2,line3);
+		jsConsole.writeLine("Is there a triangle : "+ isTrue);
+	}										
+	</script>			  
+</body>
+</html>

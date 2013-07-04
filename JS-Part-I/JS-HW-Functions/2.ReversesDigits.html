@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>English word</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+	<label for="firstNum">Reverses the digits </label>
+		<input type="text" id="firstNum"><br/>
+		<input type="button" onclick ="reverse()" value="Say Name">
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+	function reverse() {
+		var number = jsConsole.readFloat("#firstNum");
+		var strNumber = number.toString();
+		var reverseNumber = "";
+		for (var i = strNumber.length-1; i >= 0; i--) {
+			reverseNumber += strNumber[i];
+		}
+		jsConsole.writeLine("Second way: " +  parseInt(reverseNumber,10));		
+		}											
+	</script>			  
+</body>
+</html>

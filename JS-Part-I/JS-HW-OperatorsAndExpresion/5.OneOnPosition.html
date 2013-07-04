@@ -1,0 +1,22 @@
+
+<html>
+<head>
+	<title>if the bit 3 (counting from 0) of a given integer is 1 or 0.</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+	<div id="js-console"></div>
+	<script src="scripts/js-console.js"></script>
+	<script>
+		var a = 8;
+		var position = 3;
+		var mask = 1 << position;
+		if((a & mask) == mask){
+		jsConsole.writeLine('We have 1 at position 3');
+		}else{
+		jsConsole.writeLine('We have 0 at position 3'); 
+		}
+	</script>
+</body>
+</html>
+

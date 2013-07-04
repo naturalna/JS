@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>03.By given an array of students, generate a table that represents these students</title>   
+        <script src="jQuery-packege.js"></script>
+    <script src="studentsRepo.json"></script>
+    
+</head>
+<body>
+    <table id="container">
+        <tr>
+            <td>First name</td>
+            <td>Last name</td>
+            <td>Grade</td>
+            
+        </tr>
+    </table>
+
+    <script> 
+        // it is working on firefox.
+        $.getJSON("studentsRepo.json", function (jsonObj) {
+            var parentAsString = "";
+            for (var i = 0; i < jsonObj.length; i++) {
+                parentAsString += "<tr>" +
+                    "<td>" + jsonObj[i].Firstname + "</td>" +
+                    "<td>" + jsonObj[i].Lastname + "</td>" +
+                    "<td>" + jsonObj[i].Grade + "</td>" +
+                    "</tr>";
+            }
+
+            $("#container").append(parentAsString);
+        });
+
+    </script>
+</body>
+</html>

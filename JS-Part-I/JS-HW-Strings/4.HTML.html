@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>reverse strings</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+		<input type="button" onclick ="ReverseStr()" value="REVERSE">
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+	function ReverseStr() 
+	{
+		var text =  "We are <mixcase>living</mixcase> in a <upcase>yellow submarine</upcase>. We <mixcase>don't</mixcase> have <lowcase>anything</lowcase> else.";
+		var pattern = /(<.*?>)/ig;
+		var flag = true;
+		do{
+		var matchArr = text.match(pattern);
+		//removing /
+		for(var j = 0;j < matchArr.length;j++)
+		{
+			if (matchArr[j].indexOf("/") !== -1) {
+				//var index = matchArr[j].indexOf("/");
+			     matchArr[j] = matchArr[j].substr(0,1)+matchArr[j].substr(2,matchArr[j].length);
+			}
+		}
+		for(var i  = 0 ; i < matchArr.length-1; i++)
+		{
+
+			if (matchArr[i] === matchArr[i+1]) {
+				var patternInner ="";
+				switch(matchArr[i])
+				{
+					case "<lowcase>": patternInner = /(<lowcase>)(.*?)(<\/lowcase>)/i;
+					//find the match
+					var txt = text.match(patternInner);
+					//find gr2
+					var gr2 = txt[0].replace(patternInner,"$2");
+					//replace pattern with gr2
+					var text = text.replace(patternInner,gr2.toLowerCase());
+					break;
+					case "<upcase>": patternInner = /(<upcase>)(.*?)(<\/upcase>)/i;
+					var txt = text.match(patternInner);
+					var gr2 = txt[0].replace(patternInner,"$2");
+					var text = text.replace(patternInner,gr2.toUpperCase());
+					break;
+					case "<mixcase>": patternInner = /(<mixcase>)(.*?)(<\/mixcase>)/i;
+					var txt = text.match(patternInner);
+					var gr2 = txt[0].replace(patternInner,"$2");
+					var text = text.replace(patternInner,randLetters(gr2));
+					break;
+				}
+			}
+		}
+		flag = pattern.test(text);
+		matchArr.splice(0,matchArr.length);
+		}while(flag);
+		function randLetters(text)
+		{
+			var sb =[];
+			for(var i = 0;i < text.length;i++)
+			{
+				var rand = Math.floor(100*Math.random());
+				if (rand < 50) 
+				{
+					sb.push(text[i].toLowerCase());
+				}
+				else
+				{
+					sb.push(text[i].toUpperCase());
+				}
+			}
+			return sb.join("");//return string
+		}
+		jsConsole.writeLine(text);
+		return text;	
+	}															
+	</script>			  
+</body>
+</html>

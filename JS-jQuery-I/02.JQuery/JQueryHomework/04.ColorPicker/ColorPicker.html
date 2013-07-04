@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="jQuery-packege.js"></script>
+    <script src="ColorPickerPlugin.js"></script>
+    <script src="eye.js"></script>
+
+    <script src="lauout.js"></script>
+    <script src="utils.js"></script>
+    <link rel="stylesheet" media="screen" type="text/css" href="css/colorpicker.css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="css/layout.css" />
+    <style>
+        #colorSelector
+        {
+            margin :10px;
+        }
+    </style>
+</head>
+<body>
+    <div>Select background color</div>
+    <div id="colorSelector"><div style="background-color: #0000ff"></div></div>
+    <script>
+        $('#colorSelector').ColorPicker({
+	    color: '#0000ff',
+	    onShow: function (colpkr) {
+		$(colpkr).fadeIn(500);
+		return false;
+	    },
+	    onHide: function (colpkr) {
+		$(colpkr).fadeOut(500);
+		return false;
+	    },
+	    onChange: function (hsb, hex, rgb) {
+	        $('#colorSelector div').css('backgroundColor', '#' + hex);
+	        $('html').css("background", '#' + hex);
+	        $('body').css("background", '#' + hex);
+	    }
+    });
+</script>
+</body>
+    <script>
+        $('#colorPickerHolder').ColorPicker({ flat: true });
+    </script>
+</html>
+

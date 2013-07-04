@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>that compares two char arrays </title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+	<a href="#" onclick="start()">Start</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+	function start() {
+						var arrayOne = [-5,1,5,4,7,-2];
+			var arrayTwo = new Array(arrayOne.length);
+			var length = arrayOne.length;
+			for (var j = 0; j < length; j++) 
+			{
+                var biggestElement = arrayOne[0];
+			    var smallestIndex = 0;
+					for (var i =0; i < arrayOne.length; i++) 
+					{
+						if (biggestElement >= arrayOne[i]) 
+						{
+							biggestElement = arrayOne[i];
+							smallestIndex = i;
+						}		
+					}
+                    arrayTwo.push(biggestElement);
+					arrayOne.splice(smallestIndex,1);
+			}
+			for(var count in arrayTwo)
+			{
+				jsConsole.writeLine(arrayTwo[count]);
+			}
+					
+		}											
+	</script>			  
+</body>
+</html>

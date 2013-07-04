@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>Create a module to work with the console object</title>
+		<style>
+		</style>
+	</head>
+	<body>
+		<div >
+			<p>1.Writing a line to the console.</p>
+			<p>2.Writing a line to the console using a format.</p>
+			<p>3.Writing to the console should call toString() to each element.</p>
+			<p>4.Writing errors and warnings to the console with and without format.</p>
+			<p>Works in console</p>
+		</div>		
+		<script>
+		var specialConsole = (function () {
+			function stringFormat (message, args) {
+				var strMessage = message;
+				var pattern = /{\d}/g;
+				var matchResult = strMessage.match(pattern);
+				if (matchResult !== null) {
+					for (var i = 0; i < matchResult.length; i++) {
+						strMessage = strMessage.replace(matchResult[i],args[i+1]);
+					}
+					return strMessage;
+				}else{
+					return strMessage;
+				}
+			}
+
+			function writeLine (message) {
+				var argument = arguments;
+				var result = stringFormat(message, argument);
+				console.log(result);
+				alert(result);
+			}
+
+			function writeError (message) {
+				var argument = arguments;
+				var result = stringFormat(message, argument);
+				console.error(result);
+				alert(result);
+			}
+
+			function writeWarning (message) {
+				var argument = arguments;
+				var result = stringFormat(message, argument);
+				console.warn(result);
+				alert(result);
+			}
+			return{
+				writeLine:writeLine,
+				writeError:writeError,
+				writeWarning:writeWarning
+			}
+		}());
+
+		//without format
+		specialConsole.writeLine("Message: hello");
+		//logs to the console "Message: hello"
+		// with format
+		specialConsole.writeLine("Message: {0} {1}", "hello", "hello");
+		//logs to the console "Message: hello"
+		specialConsole.writeError("Error: {0}", "Something happened");
+		specialConsole.writeWarning("Warning: {0}", "A warning");
+		</script>
+	</body>
+</html>

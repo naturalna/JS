@@ -1,0 +1,110 @@
+<html>
+	<head>
+		<title>
+
+		</title>
+		<style>
+		body{
+			background: rgb(159,159,159);
+		}
+		</style>
+	</head>
+	<body>
+		<script>
+	
+var Picture = function(params) {
+	this.name = params.name;
+	this.img = this.createPicture(this.name);
+}
+
+Picture.prototype = {
+	init: function() {},
+	createPicture: function() {
+		var image = document.createElement("img");
+		image.src = this.name + ".jpg";
+		image.style.position = "absolute";
+		return image;
+	},
+}
+
+ Randerer = function() {
+	this.listOfPictures = [];
+}
+Randerer.prototype = {
+	init: function() {
+		var arrowLeft = document.createElement("img");
+		var arrowRight = document.createElement("img");
+		arrowRight.style.width = 30;
+		arrowRight.style.height = 30;
+		arrowLeft.style.width = 30;
+		arrowLeft.style.height = 30;
+		arrowLeft.style.position = "absolute";
+		arrowRight.style.position = "absolute";
+		arrowRight.style.top = 440;
+		arrowRight.style.left = 900;
+		arrowLeft.style.top = 400;
+		arrowLeft.style.left = 900;
+		arrowLeft.src = "arrowLeft.jpg"; //back and straight
+		arrowRight.src = "arrowRight.jpg"
+		document.body.appendChild(arrowLeft);
+		document.body.appendChild(arrowRight);
+		self = this;
+		arrowLeft.addEventListener("click", this.movePictureStraight);
+		arrowRight.addEventListener("click", this.movePictureBack);
+	},
+	addPictureToList: function(picture) {
+		this.listOfPictures.push(picture);
+	},
+	setPicturesStyle: function() {
+
+		for (var i = 0; i < this.listOfPictures.length; i++) {
+			this.listOfPictures[i].img.style.width = 400 - 40 * i;
+			this.listOfPictures[i].img.style.height = 300 - 40 * i;
+			this.listOfPictures[i].img.style.zIndex = this.listOfPictures.length - i;
+
+			this.listOfPictures[i].img.style.marginTop = 300 - i * 20;
+			this.listOfPictures[i].img.style.marginLeft = 400 + i * 20;
+		}
+	},
+	appendToDOM: function() {
+		for (var i = 0; i < this.listOfPictures.length; i++) {
+			document.body.appendChild(this.listOfPictures[i].img);
+		}
+	},
+	movePictureStraight: function() {
+		var firstPicture = self.listOfPictures.shift();
+		self.listOfPictures.push(firstPicture);
+		self.setPicturesStyle();
+		self.appendToDOM();
+	},
+	movePictureBack: function() {
+		var firstPicture = self.listOfPictures.pop();
+		self.listOfPictures.unshift(firstPicture);
+		self.setPicturesStyle();
+		self.appendToDOM();
+	},
+
+}
+
+var randerer = new Randerer();
+randerer.init();
+randerer.addPictureToList(new Picture({
+	name: "sclorol"
+}));
+randerer.addPictureToList(new Picture({
+	name: "dogs"
+}));
+randerer.addPictureToList(new Picture({
+	name: "strangeCat"
+}));
+randerer.addPictureToList(new Picture({
+	name: "elephan"
+}));
+randerer.addPictureToList(new Picture({
+	name: "cat"
+}));
+randerer.setPicturesStyle();
+randerer.appendToDOM();
+		</script>
+	</body>
+</html>

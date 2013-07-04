@@ -1,0 +1,5 @@
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\02.BeforeAndAfter\bin\02.BeforeAndAfter.dll
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\02.BeforeAndAfter\bin\02.BeforeAndAfter.pdb
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\02.BeforeAndAfter\obj\Debug\02.BeforeAndAfter.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\02.BeforeAndAfter\obj\Debug\02.BeforeAndAfter.dll
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\02.BeforeAndAfter\obj\Debug\02.BeforeAndAfter.pdb

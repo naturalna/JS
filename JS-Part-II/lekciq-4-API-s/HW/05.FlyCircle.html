@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>Draw a circle that flies inside a box</title>
+		<style>
+		canvas{
+			border: 2px solid black;
+			background: rgb(159,159,159);
+		}
+		</style>
+	</head>
+	<body>
+		<canvas id = "canvas" width="500" height ="300">
+			
+		</canvas>
+		<script>
+(function() {
+	
+		var positionX = 7;
+		var positionY = 7;
+		var stepX = 1;
+		var stepY = 1;
+		var timer = setInterval(function () {
+			positionX += stepX;
+			positionY += stepY;
+			drawCircle(positionX, positionY);
+			checkcirclePosition(positionX, positionY);
+		},8);
+
+		function drawCircle(xCoord, yCoord) {
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+			ctx.clearRect(0,0,500,300);
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "rgb(252,166,218)";
+			ctx.lineWidth = 3;
+			ctx.beginPath();
+			ctx.arc(xCoord, yCoord, 7, 0, 2 * Math.PI);
+			ctx.stroke();
+			ctx.fill();
+			ctx.closePath();
+		}
+
+		function checkcirclePosition(positionX, positionY) {
+
+			if (positionX >= canvas.width - 7) {
+				stepX = -1;
+			} else if (positionX <= 7) {
+				stepX = 1;
+			} else if (positionY >= canvas.height - 7) {
+				stepY = -1;
+			} else if (positionY <= 7) {
+				stepY = 1;
+			}
+		}
+
+}())
+		</script>
+	</body>
+</html>

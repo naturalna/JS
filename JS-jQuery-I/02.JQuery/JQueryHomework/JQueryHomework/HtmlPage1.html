@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>01.Sliders</title>
+    <script src ="jQuery-packege.js"></script>
+    <script src ="Slider.js"></script>
+    <script src="OOPUtils.js"></script>
+    <style>
+        #holder{
+            min-width:500px;
+            min-height:400px;
+            position: absolute;
+            top:100px;
+            left:100px;
+            background:rgb(124, 211, 23);
+        }
+        #container{
+            display:none;
+        }
+        #img{
+            width:200px;
+            height:200px;
+        }
+        input[type=button]{
+            margin-top:50px;
+            margin-left:200px;
+        }
+        table
+        {
+            border: 1px solid green;
+        }
+
+    </style>
+</head>
+<body>
+    <div id ="holder">
+        <table id="table">
+            <tr>
+                <td colspan="2" id ="title"></td>
+            </tr>
+            <tr>
+                <td id ="food">
+                    
+                </td>
+                <td id ="imageHolder"></td>
+            </tr>
+        </table>
+
+    </div>
+    <input type="button" name="name" value="prev" id="prev" />
+    <input type="button" name="name" value="next" id ="next"/>
+    <div id="container">
+    <img src="img/bonboni1.jpg" alt="Alternate Text" id ="bonboni1"/>
+    <img src="img/bonboni2.jpg" alt="Alternate Text" id ="bonboni2"/>
+    <img src="img/bonboni3.jpg" alt="Alternate Text" id ="bonboni3"/>
+    <img src="img/bonboni4.jpg" alt="Alternate Text" id ="bonboni4"/>
+    </div>
+    <script>
+        var gal = Gallery.Slide("bonboni1");
+        var onPrevButtonClick = function (ev) {
+            gal.callPrev();
+        }
+
+        var onNextButtonClick = function (ev) {
+            gal.callNext();
+        }
+
+        $("#prev").on("click", onPrevButtonClick);
+        $("#next").on("click", onNextButtonClick);
+    </script>
+
+</body>
+</html>

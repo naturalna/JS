@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>
+		Find bigest Number
+	</title>
+
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>
+		<label for="firstNum">First number</label>
+		<input type="text" id="firstNum"><br/>
+		<label for="secondNum">Second number</label>
+		<input type="text" id="secondNum"><br/>
+		<label for="thirdNum">Third number</label>
+		<input type="text" id="thirdNum"><br/>
+		<label for="fourth">Fourth number</label>
+		<input type="text" id="fourth"><br/>
+		<label for="fifth">Fifth number</label>
+		<input type="text" id="fifth"><br/>
+		<input type="button" onclick ="greatest()" value="Find">
+		<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  //creating console
+	</script>
+	<script>
+	function greatest(){
+		//reading the text field
+		var num1 = jsConsole.readFloat("#firstNum");
+		var num2 = jsConsole.readFloat("#secondNum");
+		var num3 = jsConsole.readFloat("#thirdNum");
+		var num4 = jsConsole.readFloat("#fourth");
+		var num5 = jsConsole.readFloat("#fifth");
+		var arrNum = [num1,num2,num3,num4,num5];
+		var biggest = num1;
+		for (var i = 1; i < arrNum.length; i++) {
+			if (arrNum[i] > biggest) {
+				biggest = arrNum[i];
+			}	
+		}
+		jsConsole.writeLine(biggest);
+	}
+	</script>		  	
+</body>
+
+</html>

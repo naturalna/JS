@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title> IE querySelectorAll </title>
+	</head>
+	<body>
+		<div>
+			<p>Write a script that shims querySelector and querySelectorAll in older browsers</p>
+		</div>
+		<script>
+			//It is not working yet. It is difficult without libraries
+			//querySelectorAll("#a p");
+			function parser(selector){	
+				var commands = [];
+				commands = selector.split(",");
+				return commands;
+			}
+
+			function parserForCommand(commands){
+				var commandContainer =[];
+				for (var i = 0; i < commands.length; i++) {
+					commandContainer.push(commands[i].split(" "));
+				}
+				return commandContainer;
+			}
+
+			function searchFunction(command, startTag){
+				var firstTag;
+				if (command[0] === "#") {
+						var tag = selectorElements.slice(1,0);
+						firstTag = startTag.getElementById(tag);
+					}else if (selectorElements[i][0] === ".") {
+						var tag = selectorElements.slice(1,0);
+						firstTag = startTag.getElementsByClassName();
+					}
+					else{
+						firstTag = startTag.getElementsByTagName(selectorElements[i]);
+					}	
+					return firstTag;
+			}
+			if (typeof document.querySelectorAll !== 'function') {
+
+			document.prototype.querySelectorAllShim = function(selectors){
+				//split for more then one searched tags at the same time
+				var commands = parser(selectors);
+				var startTag = document;
+				commands = parserForCommand(commands);
+				var result = [];
+				var innerTagsLength = 1;
+					for (var i = 0; i < commands.length; i++) {
+						for (var j = 0; j < commands[i].length; j++) {
+							for (var c = 0; c < innerTagsLength; c++) {
+								result = searchFunction(commands[i][j], startTag);
+								startTag = result[c];
+								if (searchFunction(commands[i][j], startTag) === "") {
+									result.slice(c,c+1);
+								}
+							}
+							
+								if (result.length > 1) {
+									innerTagsLength = result.length
+								}
+						}
+					}
+					return result;
+			};
+			
+		}
+
+		</script>
+	</body>
+	
+</html>

@@ -1,0 +1,21 @@
+
+<html>
+<head>
+	<title>checks if given proint (x,  y) is within a circle K(O, 5).</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+	<div id="js-console"></div>
+	<script src="scripts/js-console.js"></script>
+	<script>
+		var radius = 5;
+		var pointX = -5;
+		var pointY = 0;
+		if(pointX*pointX+pointY*pointY <= radius*radius){
+		jsConsole.writeLine('The point is in the circle');
+		}else{
+		jsConsole.writeLine('The point is not in the circle');
+		}
+	</script>
+</body>
+</html>

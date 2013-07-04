@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>k</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+		<input type="button" onclick ="Solve(["1", "-2", "-3", "4", "-5", "6", "-7", "-8"])" value="g">
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+	function Solve(args) 
+	{
+		    var boolArr = [];
+    for (var i = 0; i < args.length; i++) {
+        boolArr[i] = true;
+        args[i] = parseInt(args[i],10);
+    }
+    var maxCount = 0;
+    var count = 1;
+    var startPositon = -1;
+    var length = 0;
+    for (var jump = 1; jump < args.length; jump++) {
+        var nj = jump;
+        do {
+            startPositon++;
+            var position = startPositon;
+            do {
+                if (position + jump > args.length - 1) {
+                    jump = jump - args.length - 1;
+                }
+                if (boolArr[position] !== true || (args[position + jump] < args[position])) {
+                    break;
+                } else {
+                    count++;
+                    position = position + jump;
+                }
+            } while (true);
+            if (count > maxCount) {
+                maxCount = count;
+                length = nj;
+            }
+        } while (startPositon < args.length);
+    }
+    console.log(length);
+    return length;
+	}
+
+	</script>			  
+</body>
+</html>

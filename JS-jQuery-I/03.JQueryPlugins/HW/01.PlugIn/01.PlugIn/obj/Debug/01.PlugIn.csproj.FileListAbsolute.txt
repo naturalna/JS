@@ -1,0 +1,5 @@
+C:\Users\user\Desktop\teleric\JS-LIB\03.JQueryPlugins\HW\01.PlugIn\01.PlugIn\bin\01.PlugIn.dll
+C:\Users\user\Desktop\teleric\JS-LIB\03.JQueryPlugins\HW\01.PlugIn\01.PlugIn\bin\01.PlugIn.pdb
+C:\Users\user\Desktop\teleric\JS-LIB\03.JQueryPlugins\HW\01.PlugIn\01.PlugIn\obj\Debug\01.PlugIn.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\teleric\JS-LIB\03.JQueryPlugins\HW\01.PlugIn\01.PlugIn\obj\Debug\01.PlugIn.dll
+C:\Users\user\Desktop\teleric\JS-LIB\03.JQueryPlugins\HW\01.PlugIn\01.PlugIn\obj\Debug\01.PlugIn.pdb

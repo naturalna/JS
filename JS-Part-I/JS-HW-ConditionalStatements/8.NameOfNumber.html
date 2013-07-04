@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>
+		Say name of number
+	</title>
+
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>
+		<label for="firstNum">First number</label>
+		<input type="text" id="firstNum"><br/>
+		<input type="button" onclick ="greatest()" value="Find">
+		<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  //creating console
+	</script>
+	<script>
+	//function for finding sign
+	function greatest(){
+		//reading the text field
+		var myNum = jsConsole.readFloat("#firstNum");
+		var numFirst = 0;
+		var numSecond = 0;
+		var numThird = 0;
+            var digits = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" ];
+            if (myNum >= 0 && myNum < 10)
+            {
+                jsConsole.writeLine(digits[myNum]);
+            }
+            var underTwenty =["eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eightteen", "nineteen" ];
+            if (myNum > 10 && myNum < 20)
+            {
+                jsConsole.writeLine(underTwenty[myNum - 11]);
+            }
+            var decimals = ["ten", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety" ];
+            if (myNum > 19 && myNum < 100 || myNum===10)
+            {
+                numFirst = Math.floor(myNum / 10);
+                numSecond = myNum % 10;
+                if (myNum % 10 === 0)
+                {
+                    jsConsole.writeLine(decimals[Math.floor(myNum / 10)- 1]);
+                }
+                else
+                {
+                    jsConsole.writeLine(decimals[Math.floor(myNum / 10) - 1] + ' ' + digits[myNum % 10]);
+                }
+            }         
+            if(myNum>99 && myNum<1000)
+            {
+                numFirst = Math.floor(myNum / 100);
+                numSecond = (Math.floor(myNum / 10)) % 10;
+                numThird = myNum % 10;
+                if (numSecond !== 0 && numThird!==0 && numSecond>1)
+                {
+                    jsConsole.writeLine(digits[numFirst] + " hundred and " + decimals[numSecond-1] + digits[numThird]);
+                }
+                else if(numSecond===1 && numThird!==0)
+                {
+                    jsConsole.writeLine(digits[numFirst] + " hundred and " + underTwenty[myNum%10-1]);
+                }
+                else if (numSecond!==0 && numThird===0)
+                {
+                    jsConsole.writeLine(digits[numFirst] + " hundred and " + decimals[numSecond-1]);
+                }
+                else if(myNum%100===0)
+                {
+                    jsConsole.writeLine(digits[Math.floor(myNum/100)] + " hundred");
+                }
+                else if (numSecond === 0 && numThird !== 0)
+                {
+                    jsConsole.writeLine(digits[Math.floor(myNum / 100)] + " hundred and " + digits[myNum % 10]);
+                }       
+            }	
+        }
+	</script>		  	
+</body>
+
+</html>

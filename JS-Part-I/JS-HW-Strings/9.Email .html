@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>findEmail</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+		<input type="button" onclick ="findEmail()" value="findEmail">
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+	function findEmail() 
+	{
+		var text = "jhvsdjh@ncb.chjh visit our forum nadjg@@kbc.lk to discuss the courses.&ltp&gt";
+		
+		var pattern = /(\s){0,1}(\w){1,}@{1}(\w*)(\.){1}(.*?\s)/igm;
+		var matchArr = text.match(pattern);
+		for (var i = 0; i < matchArr.length; i++) {
+			jsConsole.writeLine(matchArr[i]);
+		}	
+	}															
+	</script>			  
+</body>
+</html>

@@ -1,0 +1,5 @@
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\JQueryHomework\bin\JQueryHomework.dll
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\JQueryHomework\bin\JQueryHomework.pdb
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\JQueryHomework\obj\Debug\01.Slider.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\JQueryHomework\obj\Debug\JQueryHomework.dll
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\JQueryHomework\obj\Debug\JQueryHomework.pdb

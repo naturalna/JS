@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>
+		Find roots
+	</title>
+
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>
+		<label for="firstNum">First number</label>
+		<input type="text" id="firstNum"><br/>
+		<label for="secondNum">Second number</label>
+		<input type="text" id="secondNum"><br/>
+		<label for="thirdNum">Third number</label>
+		<input type="text" id="thirdNum"><br/>
+		<input type="button" onclick ="findRoots()" value="Find">
+		<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  //creating console
+	</script>
+	<script>
+	//function for finding sign
+	function findRoots(){
+		//reading the text field
+		var a = jsConsole.readFloat("#firstNum");
+		var b = jsConsole.readFloat("#secondNum");
+		var c = jsConsole.readFloat("#thirdNum");
+		var discr = b*b -(4*a*c);
+		var discrSqrt = Math.floor(Math.sqrt(discr));
+        var X1;
+        var X2;
+        if(discrSqrt >= 0)
+        {
+		    if (Math.floor(Math.sqrt(discr)) === 0) 
+		    {
+            	X1 = ((-b)/(2*a));
+				jsConsole.writeLine("There is only one root X1 = X2 = " + X1);
+		    }
+		    else
+		    {
+             X1 = (-b+ discrSqrt)/2*a;
+             X2 = (-b - discrSqrt)/2*a;
+		     jsConsole.writeLine("X1 = " + X1);
+	         jsConsole.writeLine("X2 = " + X2);
+        	}
+    	}
+    	else
+    	{
+			jsConsole.writeLine("There is no real roots");
+		}	
+	}
+	</script>		  	
+</body>
+
+</html>

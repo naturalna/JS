@@ -1,0 +1,197 @@
+<html>
+	<head>
+		<title></title>
+		<style>
+		canvas{
+			border: 2px solid black;
+			background: rgb(57,57,57);
+		}
+		</style>
+	</head>
+	<body>
+		<canvas id = "canvas" width="800" height ="400">
+			
+		</canvas>
+		<script>
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+			ctx.strokeStyle = "rgb(40,90,100)";
+			ctx.lineWidth = "2";
+
+			ctx.beginPath();
+			ctx.fillStyle = "rgb(144,200,214)";
+			ctx.arc(320, 320, 40, 0, 2 * Math.PI);
+			ctx.moveTo(150, 320);
+			ctx.arc(150, 320, 40, 0, 2 * Math.PI);
+			ctx.fill();
+			ctx.stroke();
+			ctx.closePath();
+
+			ctx.beginPath();
+			ctx.moveTo(175, 250);
+			ctx.lineTo(210, 250);
+			ctx.moveTo(190, 250);
+			ctx.lineTo(230, 320);
+			ctx.lineTo(150, 320);
+			ctx.lineTo(200, 265);
+			ctx.lineTo(310, 265);
+			ctx.lineTo(230, 320);
+			ctx.moveTo(320, 320);
+			ctx.lineTo(305, 240);
+			ctx.lineTo(330, 205); 
+			ctx.moveTo(305, 240);
+			ctx.lineTo(270, 245);
+
+			ctx.moveTo(219, 310);
+			ctx.lineTo(210, 300);
+			ctx.moveTo(237, 331);
+			ctx.lineTo(245, 340);
+			ctx.stroke();
+			ctx.closePath();
+
+			ctx.beginPath();
+			ctx.arc(230, 320, 15, 0, 2 * Math.PI);
+			ctx.stroke();
+			ctx.closePath();
+			//head
+			ctx.beginPath();
+			ctx.arc(200, 165, 50, 0, 2*Math.PI);
+			ctx.stroke();
+			ctx.fill();
+			//eye
+			drawEllipse(ctx, 170,148,22,10);
+			drawEllipse(ctx, 212,148,22,10);
+			ctx.fillStyle = "rgb(40,90,100)";
+			drawEllipse(ctx, 166,148,3,8);
+			drawEllipse(ctx, 208,148,3,8);
+			ctx.closePath();
+			//nose
+			ctx.beginPath();
+			ctx.moveTo(191, 148);
+			ctx.lineTo(180,165);
+			ctx.lineTo(191,165);
+			ctx.stroke();
+			ctx.closePath();
+
+			//mouth
+			ctx.beginPath();
+			ctx.moveTo(170, 180);
+			ctx.bezierCurveTo(170,191,213,196,212,185);
+			ctx.moveTo(170, 180);
+			ctx.bezierCurveTo(170,170,210,172,212,185);
+			ctx.stroke();
+			ctx.closePath();
+
+			//hat
+			ctx.beginPath();
+			ctx.strokeStyle = "black";
+			ctx.fillStyle = "blue";
+			ctx.lineWidth = "2";
+			drawEllipse(ctx, 192, 119, 150, 22);
+			drawEllipse(ctx, 200, 110, 70, 20);
+			ctx.moveTo(170, 50);
+			ctx.rect(173, 50, 53, 60);
+			ctx.fill();
+			drawEllipse(ctx, 200, 50, 70, 20);
+			ctx.closePath();
+
+			//house
+			ctx.beginPath();
+			ctx.fillStyle = "rgb(151, 91, 91)";
+			ctx.strokeStyle = "black";
+			ctx.moveTo(465, 133);
+			ctx.rect(465, 133, 213, 161);
+			ctx.fill();
+			ctx.stroke();
+			ctx.lineTo(570, 13);
+			ctx.lineTo(678, 133);
+			ctx.fill();
+			ctx.stroke();
+			ctx.moveTo(615,104);
+			ctx.lineTo(615,44);
+			ctx.lineTo(637, 44);
+			ctx.lineTo(637,104);
+			ctx.fill();
+			ctx.stroke();
+			ctx.moveTo(616, 58);
+			ctx.fillRect(616, 58, 20, 30);
+			drawEllipse(ctx, 626, 43, 28, 5);
+			ctx.closePath();
+			//windows
+			ctx.beginPath();
+			ctx.fillStyle = "black";
+			ctx.strokeStyle = "rgb(151, 91, 91)";
+			//upper window
+			ctx.moveTo(480, 153);
+			ctx.fillRect(480, 153, 75, 50);
+			ctx.moveTo(480,178);
+			ctx.lineTo(555,178);
+			ctx.moveTo(518, 152);
+			ctx.lineTo(518,203);
+			//upper Left window
+			ctx.moveTo(585, 153);
+			ctx.fillRect(585, 153, 75, 50);
+			ctx.moveTo(585,178);
+			ctx.lineTo(662,178);
+			ctx.moveTo(622, 152);
+			ctx.lineTo(622,203);
+			//down window
+			ctx.moveTo(585, 222);
+			ctx.fillRect(585, 222, 75, 50);
+			ctx.moveTo(585,246);
+			ctx.lineTo(660,246);
+			ctx.moveTo(622, 222);
+			ctx.lineTo(622,272);
+			ctx.stroke();
+			ctx.closePath();
+
+			//door
+			ctx.beginPath();
+			ctx.strokeStyle = "black";
+			ctx.moveTo(487, 294);
+			ctx.lineTo(487, 238);
+			ctx.moveTo(487, 238);
+			ctx.bezierCurveTo(487,216,547,216,547,237);
+			ctx.moveTo(547, 237);
+			ctx.lineTo(547, 293);
+			ctx.moveTo(518, 222);
+			ctx.lineTo(518, 293);
+			ctx.stroke();
+			ctx.closePath();
+
+			ctx.beginPath();
+			ctx.arc(510, 273, 4, 0, 2 * Math.PI);
+			ctx.stroke();
+			ctx.closePath();
+
+			ctx.beginPath();
+			ctx.arc(526, 273, 4, 0, 2 * Math.PI);
+			ctx.stroke();
+			ctx.closePath();
+
+			function drawEllipse(ctx, centerX, centerY, width, height) {
+
+				ctx.beginPath();
+				
+				ctx.moveTo(centerX, centerY - height / 2); // A1
+
+				ctx.bezierCurveTo(
+				centerX + width / 2, centerY - height / 2, // C1
+				centerX + width / 2, centerY + height / 2, // C2
+				centerX, centerY + height / 2); // A2
+
+				ctx.bezierCurveTo(
+				centerX - width / 2, centerY + height / 2, // C3
+				centerX - width / 2, centerY - height / 2, // C4
+				centerX, centerY - height / 2); // A1
+				ctx.stroke();
+				ctx.fill();
+				ctx.closePath();
+			}
+
+
+
+		
+		</script>
+	</body>
+</html>

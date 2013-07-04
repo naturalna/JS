@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>Create a TreeView component</title>
+		<style>
+		ul{
+			list-style: none;
+		}
+		</style>
+	</head>
+	<body>
+		<div id = "condition">
+			<p>Initially only the top items must be visible On item click
+			If its children are hidden (collapsed),they must be made visible (expanded)
+			If its children are visible (expanded),they must be made hidden (collapsed)
+			Research about events
+			</p>
+		</div>
+		<ul>
+			<li><input type="image" src="PlayButton.png">Item</li>
+			<li><input type="image" src="PlayButton.png">Item</li>
+			<li><input type="image"  src="PlayButton.png" id="thirdLi" 
+						onclick ="showListViewNode(event)">
+				Item
+				<ul style = "display: none">
+					<li><input type="image" src="PlayButton.png">Sub item</li>
+					<li><input type="image" src="PlayButton.png" id="fourthSubLi" 
+						onclick ="showListViewNode(event)">
+						Sub item
+						<ul style = "display: none">
+							<li><input type="image" src="PlayButton.png">Sub sub item</li>
+							<li><input type="image" src="PlayButton.png">Sub sub item</li>
+						</ul>
+					</li>
+				</ul></li>
+			<li><input type="image" src="PlayButton.png">Item</li>
+			<li><input type="image" src="PlayButton.png">Item</li>
+		</ul>
+		<script>
+		function showListViewNode(event){
+			var idOfClickedLi = event.target.id;
+			var liElement = document.getElementById(idOfClickedLi);
+			var nextElement = liElement.nextElementSibling;
+			var isListOpen = nextElement.style.display;
+			if (isListOpen === "none") {
+				nextElement.style.display = "block";
+			}else{
+				nextElement.style.display = "none";
+			}	
+		}
+		</script>
+	</body>
+	
+</html>

@@ -1,0 +1,4 @@
+C:\Users\user\Desktop\teleric\JS-LIB\05.06.AJAXandJSON\ConsumingRemoteData\ConsumingRemoteData\RemoteData.Client\bin\RemoteData.Client.dll
+C:\Users\user\Desktop\teleric\JS-LIB\05.06.AJAXandJSON\ConsumingRemoteData\ConsumingRemoteData\RemoteData.Client\bin\RemoteData.Client.pdb
+C:\Users\user\Desktop\teleric\JS-LIB\05.06.AJAXandJSON\ConsumingRemoteData\ConsumingRemoteData\RemoteData.Client\obj\Debug\RemoteData.Client.dll
+C:\Users\user\Desktop\teleric\JS-LIB\05.06.AJAXandJSON\ConsumingRemoteData\ConsumingRemoteData\RemoteData.Client\obj\Debug\RemoteData.Client.pdb

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>most frequent number in array </title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+	<a href="#" onclick="searchFrequent()">Start</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+	function order(x,y){
+		if (x > y) 
+		{
+			return -1;
+		}
+		else
+		{
+			return 1;
+		}
+	}							
+	function sortArr() {
+			var arrayOne = [-5,1,7,-2,4,11,4,-5,-5];
+			arrayOne.sort(order);
+			jsConsole.writeLine(arrayOne.join(','));
+			return arrayOne;
+		}	
+		function searchFrequent()
+		{
+			var arrayForSearch = sortArr();
+			var numberForSearch = 7;
+			var restOfIndex = 0;
+            var newArray = [];
+          //middle func
+			function search()
+			{
+              
+			var middleElement = Math.floor(arrayForSearch.length/2);
+				// from 5 elements take 2 --> index 2 the middle 
+			
+				if (arrayForSearch[middleElement] === numberForSearch) 
+				{
+                  jsConsole.writeLine("The element is at position " + (middleElement+restOfIndex));
+					//return middleElement;
+				}
+				else
+				{
+					if (arrayForSearch[middleElement] > numberForSearch) 
+						// go right
+						{
+							newArray = [];
+							for (var j = middleElement+1; j < arrayForSearch.length; j++) 
+							{
+								newArray.push(arrayForSearch[j]);
+							}
+							restOfIndex = restOfIndex + middleElement+1;
+							arrayForSearch =[];
+							arrayForSearch = newArray;
+							if (arrayForSearch.length > 0) 
+							{
+								search();
+							}
+							else
+							{
+								jsConsole.writeLine("No");
+								//return "No";
+							}
+						}
+						if (arrayForSearch[middleElement] < numberForSearch) 
+						// go left
+						{
+							newArray = [];
+							for (var k = 0; k < middleElement; k++) 
+							{
+								newArray.push(arrayForSearch[k]);
+							}
+
+							arrayForSearch =[];
+							arrayForSearch = newArray;
+							if (arrayForSearch.length > 0) 
+							{
+								search();
+							}
+							else
+							{
+								jsConsole.writeLine("No");
+								//return "No";
+							}
+							
+						}
+					}
+				}
+					search();
+		}	
+
+	</script>			  
+</body>
+</html>

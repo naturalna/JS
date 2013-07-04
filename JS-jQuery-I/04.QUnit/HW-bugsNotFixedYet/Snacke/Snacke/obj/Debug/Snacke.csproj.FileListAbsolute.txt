@@ -1,0 +1,5 @@
+C:\Users\user\Desktop\teleric\JS-LIB\04.KomponentnoTestwane\HW\Snacke\Snacke\bin\Snacke.dll
+C:\Users\user\Desktop\teleric\JS-LIB\04.KomponentnoTestwane\HW\Snacke\Snacke\bin\Snacke.pdb
+C:\Users\user\Desktop\teleric\JS-LIB\04.KomponentnoTestwane\HW\Snacke\Snacke\obj\Debug\Snacke.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\teleric\JS-LIB\04.KomponentnoTestwane\HW\Snacke\Snacke\obj\Debug\Snacke.dll
+C:\Users\user\Desktop\teleric\JS-LIB\04.KomponentnoTestwane\HW\Snacke\Snacke\obj\Debug\Snacke.pdb

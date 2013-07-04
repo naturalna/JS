@@ -1,0 +1,5 @@
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\04.ColorPicker\bin\04.ColorPicker.dll
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\04.ColorPicker\bin\04.ColorPicker.pdb
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\04.ColorPicker\obj\Debug\04.ColorPicker.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\04.ColorPicker\obj\Debug\04.ColorPicker.dll
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\04.ColorPicker\obj\Debug\04.ColorPicker.pdb

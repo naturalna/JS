@@ -1,0 +1,223 @@
+<html>
+	<head>
+		<title>Create a module for working to work with DOM. The module should have the following functionality</title>
+		<style>
+			article{
+				width:100px;
+				height:100px;
+				background: rgb(159,159,159);
+				margin:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class = "div">
+			<p>Add element to parent element by given selector.</p>
+			<p>Remove element from the DOM  by given selector.</p>
+			<p>Attach event to given selector by given event type and event hander</p>
+			<p>Add elements to buffer, which appends them to the DOM when their for some selector count becomes 100</p>
+			<p>The buffer contains elements for each selector it gets Get elements by CSS selector. The module should reveal only the methods</p>
+		</div>
+		<div id = "wrapper"> wrapper
+			<div class = "div">
+				<div style = "width :50px; height: 50px; background: green;"></div>
+			</div>
+
+		</div>
+		<div>
+			<div>div</div>
+			<a class="button" href="#">Click me</a>
+		</div>
+		<a class="button" href="#">Click me</a>
+		<a class="button" href="#">Click me</a>
+		<script>
+		var domModule = (function() {
+			var BUFFER_SIZE = 100;
+			var currentBufferSize = 0;
+			var fragmentCollection = [];
+
+			//appendChild function
+			function appendChild(tag, selector) {
+				var selectedSelector = searchSelectorType(selector);
+				appendSearch();
+
+				function appendSearch() {
+					switch (selectedSelector) {
+						case "Id":
+							var selectorNameForId = selector.slice(1, selector.length);
+							document.getElementById(selectorNameForId).appendChild(tag);
+							alert("new element is append");
+							break;
+
+						case "Class":
+							var selectorNameForClass = selector.slice(1, selector.length);
+							var tagsForChange = document.getElementByClassName(selectorNameForClass);
+							for (var i = 0, len = tagsForChange.length; i < len; i++) {
+								tagsForChange[i].appendChild(tag);
+							}
+							break;
+
+						case "First":
+							var lastIndexOfTag = selector.indexOf(":");
+							var tagsForChange = selector.slice(0, lastIndexOfTag); //li
+							var tagCollection = document.getElementsByTagName(tagsForChange);
+							tagCollection[0].appendChild(tag);
+							alert("new element is append");
+							break;
+
+						case "Tag":
+							var tagCollection = document.getElementsByTagName(selector);
+							for (var i = 0, len= tagCollection.length; i < len; i++) {
+								tagCollection[i].appendChild(tag);
+								alert("new element is append");
+							}
+							break;
+
+						default:
+							alert("searchSelectorType function is broken !!");
+					}
+				}
+			}
+
+			// removeChildFunction
+			function removeChild (tag, selector) {
+				var selectedSelector = searchSelectorType(selector);
+				removingSearch();
+
+				function removingSearch() {
+					switch (selectedSelector) {
+						case "Id":
+							var selectorNameForId = selector.slice(1, selector.length);
+							var childForRemove = document.getElementById(selectorNameForId);
+							var parent = childForRemove.parentNode;
+							parent.removeChild(childForRemove);
+							alert("An element is removed");
+							break;
+
+						case "Class":
+							var selectorNameForClass = selector.slice(1, selector.length);
+							var childrenForRemove = document.getElementsByClassName(selectorNameForClass);
+
+							var len = childrenForRemove.length
+							while(len !== 0){
+								var parent = childrenForRemove[0].parentNode;
+								parent.removeChild(childrenForRemove[0]);
+
+								alert("An element is removed");
+								len--;
+							}
+							break;
+
+						case "First":
+							var lastIndexOfTag = selector.indexOf(":");
+							var selectorNameForRemove = selector.slice(0, lastIndexOfTag);
+
+							var children = document.getElementsByTagName(selectorNameForRemove);
+							var desiredParent = document.createElement(tag);
+
+							for (var i = 0, len = children.length; i < len; i++) {
+								var realParent = children[i].parentNode;
+
+								if (realParent.nodeName === desiredParent.nodeName) {
+									realParent.removeChild(children[i]);
+									alert("An element is removed");
+									break;	
+								}
+							}
+							
+							break;
+						case "Tag":
+							var tagCollectionForRemove = document.getElementsByTagName(selector);
+
+							for (var i = 0, len = tagCollectionForRemove.length; i < len ; i++) {
+								var parentNode = tagCollectionForRemove[i].parentNode;
+								var desiredChild = document.createElement(tag);
+									if (parentNode.nodeName === desiredChild.nodeName) {
+									parentNode.removeChild(tagCollectionForRemove[i]);
+									alert("An element is removed");
+								}
+							}
+							break;
+
+						default:
+							alert("searchSelectorType function is broken !!");
+					}
+				}
+			}
+
+			function searchSelectorType(selectorString) {
+				var firstChar = selectorString[0];
+				var isFirstChildSelect = selectorString.indexOf(":");
+				//id
+				if (firstChar === "#") {
+					return "Id";
+				}
+				//class
+				else if (firstChar === ".") {
+					return "Class";
+				}
+				//first
+				else if (isFirstChildSelect !== -1) {
+					return "First";
+				} else return "Tag";
+			}
+
+			function addHandler(element, eventListener, eventHandler){
+				var domTags = document.querySelectorAll(element);
+
+				for (var i = 0; i < domTags.length; i++) {
+					domTags[i].addEventListener(eventListener, eventHandler, false);
+				}
+			}
+
+			function appendToBuffer (parentTag, childTag) {
+				var parent = document.querySelector(parentTag);
+				var child = document.createElement(childTag);
+				//currentBufferSize starts from 0
+				fragmentCollection[currentBufferSize] = {parent:parent,fragment:child};
+				currentBufferSize++;
+
+				alert("currentBufferSize = " + currentBufferSize);
+
+				if (currentBufferSize === BUFFER_SIZE) {
+					for (var i = 0; i < fragmentCollection.length; i++) {
+						var currentParent = fragmentCollection[i].parent;
+						var currentChild = fragmentCollection[i].fragment;
+						currentParent.appendChild(currentChild);
+					}
+					currentBufferSize = 0;
+					fragmentCollection = [];
+				}
+			}
+
+			return {
+				appendChild:appendChild,
+				removeChild:removeChild,
+				addHandler:addHandler,
+				appendToBuffer:appendToBuffer
+			}
+		}());
+
+		// call function
+		var p = document.createElement("p");
+		//I don't use querySelector and domModule works only for this types
+		//domModule.removeChild(tag, selector)
+		//domModule.removeChild("ul", "li:first");
+		//domModule.removeChild("p", "#divId");
+		//domModule.removeChild("div", ".divId");
+		//domModule.removeChild("div", "div");
+		p.style.width = 20;
+		p.style.height = 20;
+		p.style.background ="blue";
+		//change the div
+		domModule.appendChild(p, "div");
+		//remove the first li from each ul
+		domModule.removeChild("div", ".div");
+		domModule.addHandler("a.button", 'click', function(){alert("Clicked")});
+		//I have no idea what div.cloneNode(true) and navItem represents
+		domModule.appendToBuffer("div","article");
+		domModule.appendToBuffer("div","article");
+		domModule.appendToBuffer("div","article");
+		</script>
+	</body>
+</html>

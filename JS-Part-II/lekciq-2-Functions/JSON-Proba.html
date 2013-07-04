@@ -1,0 +1,26 @@
+var obj = {
+	name: "Ani",
+	talk: function sayName() {
+		console.log("Hi I am " + this.name);
+	}
+};
+// towa e s instanciq Object
+var Student = {
+	name: "muna"
+};
+//obj.talk.call(Student);
+
+
+
+
+//second demo
+function talk1(){
+	console.log("Hi " + this.name);
+}
+var people =[
+ {name:"muna"},
+ {name:"banan"},
+ {name:"dupe"}
+];
+var pesho = people[0];
+talk1.call(pesho);

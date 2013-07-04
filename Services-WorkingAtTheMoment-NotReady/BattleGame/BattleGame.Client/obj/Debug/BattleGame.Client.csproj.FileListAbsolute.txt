@@ -1,0 +1,5 @@
+C:\Users\user\Desktop\teleric\JS-LIB\izpitsyrver\Battle-Game\BattleGame\BattleGame.Client\bin\BattleGame.Client.dll
+C:\Users\user\Desktop\teleric\JS-LIB\izpitsyrver\Battle-Game\BattleGame\BattleGame.Client\bin\BattleGame.Client.pdb
+C:\Users\user\Desktop\teleric\JS-LIB\izpitsyrver\Battle-Game\BattleGame\BattleGame.Client\obj\Debug\BattleGame.Client.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\teleric\JS-LIB\izpitsyrver\Battle-Game\BattleGame\BattleGame.Client\obj\Debug\BattleGame.Client.dll
+C:\Users\user\Desktop\teleric\JS-LIB\izpitsyrver\Battle-Game\BattleGame\BattleGame.Client\obj\Debug\BattleGame.Client.pdb

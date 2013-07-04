@@ -1,0 +1,49 @@
+<html>
+	<head>
+	<title>localStorage</title>
+	<script type="text/javascript" src="scripts/cookies.js"></script>
+	</head>
+	<body>
+		<input type='text' id="tb-cookie-name" value = "local data key"/>
+      <input type='text' id="tb-cookie-value" value = "local data value"/>
+      <a href="#" onclick='saveLocalData()'></a>
+      <a href="#" onclick='saveInLocalStorage()'>save date</a>
+      <div id="localStorageData"></div>
+		<script>
+		 var localStorageShim = {
+		 	getItem:function (key) {
+		 		if (!key || !this.hasOwnProperty(key)) {
+		 		 return null; 
+		 		}
+		 		return readLocalData(key);
+		 	}
+		 	key: function () {
+
+		 	}
+		 	setItem : function  (key, value) {
+		 		cookies.create(key, value, 200);
+		 	}
+		 	length : function () {
+		 		var localData = cookies.read()
+		 		return localData.lenght;
+		 	}
+		 }
+
+		    function readLocalData(key) {
+	    	var name = document.getElementById("tb-cookie-name").value;
+	    	var localData = cookies.read();
+	   		for (var i = 0; i < localData.length; i++) {
+	   			if (localData[i].key == key) { 
+	   				return localData[i];
+	   			}	
+	   		}
+			}
+
+		function saveLocalData() {
+	    var key = document.getElementById("tb-cookie-name").value;
+	    var value = document.getElementById("tb-cookie-value").value;
+	    localStorageShim.setItem(key, value);
+		}
+		</script>
+	</body>
+</html>

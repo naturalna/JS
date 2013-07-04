@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Write a function that groups an array of persons by age, first or last name. 
+</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+		<input type="button" onclick ="SortPersons()" value="check">
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+	function SortPersons() 
+	{
+		var persons = [{firstname : "Gosho", lastname: "Petrov", age: 32}, 				   {firstname : "Bay", lastname: "Ivan", age: 81},
+					   {firstname : "Gosho",lastname: "Ivanow", age: 81}];
+			function groupPeople(persons,word) {
+
+  			
+   			var Group = [];
+            var i = 0;
+			for (var j =0 ;j< persons.length;j++) 
+			{
+				var obj ={};
+              obj[word] = persons[j][word];
+					Group[i] = obj;
+                    i++;
+			}
+			return Group;
+		}
+		
+
+var ans = groupPeople(persons,"firstname");//array of obj
+var ans1 = groupPeople(persons,"lastname");
+var ans2 = groupPeople(persons,"age");
+//tri cikyla trqbwa da sa 
+for(var c = 0 ; c< ans.length;c++)
+{
+	jsConsole.writeLine(ans[c].firstname);
+	jsConsole.writeLine(ans[c].lastname);
+	jsConsole.writeLine(ans1[c].lastname);
+	jsConsole.writeLine(ans2[c].age);
+}
+	}										
+	</script>			  
+</body>
+</html>

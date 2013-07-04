@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.Slider", "JQueryHomework\01.Slider.csproj", "{2BC07E0B-A241-42B6-B645-3465A1794A0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.BeforeAndAfter", "02.BeforeAndAfter\02.BeforeAndAfter.csproj", "{5D28CA0A-9AF7-4930-904D-52118A9C9C48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.StudentsTable", "03.StudentsTable\03.StudentsTable.csproj", "{2667418F-EBD3-41CC-8180-564ACD6A28DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.ColorPicker", "04.ColorPicker\04.ColorPicker.csproj", "{99E18BFD-4FC7-4D53-BC19-266CFCD45AAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BC07E0B-A241-42B6-B645-3465A1794A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BC07E0B-A241-42B6-B645-3465A1794A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BC07E0B-A241-42B6-B645-3465A1794A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BC07E0B-A241-42B6-B645-3465A1794A0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D28CA0A-9AF7-4930-904D-52118A9C9C48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D28CA0A-9AF7-4930-904D-52118A9C9C48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D28CA0A-9AF7-4930-904D-52118A9C9C48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D28CA0A-9AF7-4930-904D-52118A9C9C48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2667418F-EBD3-41CC-8180-564ACD6A28DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2667418F-EBD3-41CC-8180-564ACD6A28DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2667418F-EBD3-41CC-8180-564ACD6A28DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2667418F-EBD3-41CC-8180-564ACD6A28DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99E18BFD-4FC7-4D53-BC19-266CFCD45AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E18BFD-4FC7-4D53-BC19-266CFCD45AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E18BFD-4FC7-4D53-BC19-266CFCD45AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E18BFD-4FC7-4D53-BC19-266CFCD45AAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Write a function that checks if a given object contains a given property
+</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+		<input type="button" onclick ="CheckForProp()" value="check">
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+	function CheckForProp() 
+	{
+		function Check(obj,prop)
+		{
+				for(var attr in obj)
+				{
+					if (attr === prop) 
+					{
+						return true;
+					}
+				}
+				return false;
+		}
+		var Obj = {name:"first", age: 18};
+		var ans = Check(Obj,"length");
+		jsConsole.writeLine(ans);
+	}										
+	</script>			  
+</body>
+</html>

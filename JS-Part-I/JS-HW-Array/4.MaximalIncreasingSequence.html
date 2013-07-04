@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>4.MaximalIncreasingSequence</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+	<input type="button" onclick="start()" value ="Start"/>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									function start() {
+		var arrayOne=[2,3,6,6,7,8,10,-2];
+			var count = 1 ;
+			var maxCount = 0 ;
+			var startIndex = 0;
+
+			for (var i = 0; i <= arrayOne.length-2; i++) {
+				if (arrayOne[i]+1 === arrayOne[i+1]) {
+					count++;                 
+                }else{ 
+                  count = 1;
+                }
+              if (maxCount < count) {
+
+					maxCount = count;
+					endIndex = i+1;
+              }	 
+			}
+			jsConsole.writeLine("The max set is of " + maxCount + " Elements");
+			jsConsole.writeLine("The Elements are : ");
+			for (var j = endIndex-maxCount+1; j <= endIndex; j++) {
+					jsConsole.writeLine(arrayOne[j]);
+				}
+		}											
+	</script>			  
+</body>
+</html>

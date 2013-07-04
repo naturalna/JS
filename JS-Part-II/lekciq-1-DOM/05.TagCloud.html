@@ -1,0 +1,124 @@
+<html>
+	<head>
+		<title>Create a tag cloud</title>
+		<style>
+			#inputData{
+				height: 420px;
+				width: 420px;
+				background: rgb(123,123,123);
+				margin: 50px;
+				padding: 10px;
+				text-align: center;
+				display: inline-block;
+			}
+			#inputData p{
+				text-align: center;
+			}
+			input[type=button]{
+				margin-left: 250px;
+				margin-top: 20px;
+			}
+			#cloud{
+				background: rgb(200,200,200);
+				min-height: 150px;
+				min-width: 150px;
+				max-width: 150px;
+				display: inline-block;
+				position: absolute;
+				top:100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id = "condition">
+			<p>Visualize a string of tags (strings) in a given container
+			By given minFontSize and maxFontSize, generate the tags with different font-size, depending on the number of occurrences
+			</p>
+		</div>
+		<div id="inputData">
+			<p>List of all tags</p>
+			<textarea id="tagList" cols="30" rows="10"></textarea>
+			<p>put min font size</p>
+			<input type="text" id="minfontSize">
+			<p>put max font size</p>
+			<input type="text" id="maxFontSize"></br>
+			<input type="button" value = "start" onclick ="onLoadCloud()">
+		</div>
+		<div id= "cloud">
+			
+		</div>
+		<script>
+			function onLoadCloud(){
+				var MIN_FONT_SIZE = parseInt(document.getElementById("minfontSize").value) || 15;
+				var MAX_FONT_SIZE = parseInt(document.getElementById("maxFontSize").value) || 25;
+				var tags = ["cms", "javascript", "js", "ASP.NET MVC",
+							".net", ".net","css","wordpress", "xaml",
+							"js", "http", "web", "asp.net", "asp.net MVC", 
+							"ASP.NET MVC", "wp", "javascript", "js", "cms",
+							"html", "javascript", "http", "http", "CMS"];
+				printTags(tags);
+				caseInsensitive();
+				var tagsCounter;
+				for (var j = 0; j < tags.length; j++) {
+					tagsCounter = 1;
+					for (var i = j+1; i < tags.length; i++) {
+						if (tags[j] === " ") continue;
+						if (tags[j] === tags[i]) {
+							tagsCounter++;
+							tags[i] = " ";
+						}
+
+					}
+					putTagOnItsPlace(tagsCounter, tags[j]);
+				}
+
+				function caseInsensitive(){
+					for (var i = 0, len = tags.length; i < len; i++) {
+						tags[i]=tags[i].toLowerCase();
+					}
+				}
+
+				function putTagOnItsPlace(tagCount, tag){
+					var div = document.createElement("div");
+					var currentFontSize = tagCount*10;
+					if (currentFontSize < MIN_FONT_SIZE) currentFontSize = MIN_FONT_SIZE;
+					if (currentFontSize > MAX_FONT_SIZE) currentFontSize = MAX_FONT_SIZE;
+					div.style.fontSize = currentFontSize;
+					//removing div.style.maxHeight =25; will make them not one over another
+					//I like it more that way
+					div.style.maxHeight =25;
+					div.style.display = "inline-block";
+					var pElement = document.createElement("p");
+					pElement.style.color = generateBackgroundColor();
+					pElement.style.display = "inline-block";
+					pElement.style.marginTop = generatMargin();
+					pElement.style.marginLeft = generatMargin();
+					//pElement.style.border="solid 1px red";
+					//pElement.style.position ="relative";
+					pElement.innerHTML = tag;
+					div.appendChild(pElement);
+					document.getElementById("cloud").appendChild(div);
+				}
+			}
+
+			function printTags(tagsForPrint){
+				var outputText = document.getElementById("tagList");
+				outputText.value = tagsForPrint.join(",");
+			}
+
+			function generateBackgroundColor(){
+				var red = parseInt(Math.random()*255,10);
+				var green = parseInt(Math.random()*255,10);
+				var blue = parseInt(Math.random()*255,10);
+				var color = "rgb("+red+","+green+","+blue+")";
+				return color + "";
+			}
+
+			function generatMargin(){
+				var marginNumber = parseInt(Math.random()*10,10);
+				return marginNumber;
+			}
+		</script>
+	</body>
+	
+</html>

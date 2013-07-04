@@ -1,0 +1,100 @@
+<html>
+	<head>
+		<title>
+		TODO list
+		</title>
+		<style>
+		body{
+			background: rgb(159,159,159);
+		}
+		li{border:black solid 1px;}
+		</style>
+	</head>
+	<body>
+		<input type="text" id = "text" value ="New item">
+		<button id = "add" onclick ="onAddNewItem()">Add new item</button>
+		<button id = "delete" >Delete item</button>
+		<button id = "show" onclick ="onShow()">Open/Close</button>
+		<ul id ="list" style="visibility: visible;"></ul>
+		<script>
+	
+var Item = function() {
+	this.deleteButtonClicks =0;
+}
+
+Item.prototype = {
+	init: function() {
+	},
+	createItem : function() {
+		var liTag = document.createElement("li");
+		var text = document.getElementById("text");
+		liTag.innerHTML =  text.value;
+
+		var attachToDOM = function () {
+		var ul = document.getElementById("list");
+		ul.appendChild(liTag);
+		}
+		attachToDOM();	
+	},
+	deleteItem : function (ev) {
+		ev.stopPropagation();
+		// make add buttons not working
+		stopAdd();
+		this.deleteButtonClicks++;
+		//start attaching events in li
+		var ul = document.getElementById("list");
+		if (this.deleteButtonClicks % 2 !== 0) {
+			//just for fun
+			document.body.style.cursor = "crosshair";
+			for (var i = 0; i < ul.childNodes.length; i++) {
+				if (ul.childNodes[i].nodeName == "LI") {
+					ul.childNodes[i].addEventListener("click",deleteLi,false);
+				}
+			}
+		}else{
+			startAdd ();
+			document.body.style.cursor = "default";
+			for (var i = 0; i < ul.childNodes.length; i++) {
+					ul.childNodes[i].removeEventListener("click",deleteLi,true);
+			}
+			ul.removeEventListener("click",deleteLi,true);
+		}
+		
+		function deleteLi (ev) {
+			var ul = document.getElementById("list");
+			var elementToRemove = ev.target;
+			ul.removeChild(elementToRemove);
+		}
+		function stopAdd () {
+			var button = document.getElementById("add");
+			button.setAttribute("disabled", true);
+		}
+		function startAdd () {
+			var button = document.getElementById("add");
+			button.disabled = false;
+		}
+	}
+}
+function  onAddNewItem(ev) {
+	var item = new Item();
+	item.createItem(ev);
+}
+
+var item = new Item();
+function onDeleteItem (ev) {
+	item.deleteItem(ev);
+	ev.stopPropagation();
+}
+var deleteButton = document.getElementById("delete");
+deleteButton.addEventListener("click", onDeleteItem, false);
+function onShow (ev) {
+	var ul = document.getElementById("list");
+	if (ul.style.visibility === "visible") {
+		ul.style.visibility = "hidden";
+	}else{
+		ul.style.visibility = "visible";
+	}
+}
+		</script>
+	</body>
+</html>

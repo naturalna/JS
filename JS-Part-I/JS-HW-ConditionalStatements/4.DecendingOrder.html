@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>
+		Sing of Product without calc
+	</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>
+	<label for="firstNum">First number</label>
+		<input type="text" id="firstNum"><br/>
+<label for="secondNum">Second number</label>
+		<input type="text" id="secondNum"><br/>
+		<label for="thirdNum">Third number</label>
+		<input type="text" id="thirdNum"><br/>
+		<input type="button" onclick ="findBigest()" value="Find">
+		<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  //creating console
+	</script>
+	<script>
+	//function for finding sign
+	function findBigest(){
+		//reading the text field
+		var first = jsConsole.readFloat("#firstNum");
+		var second = jsConsole.readFloat("#secondNum");
+		var third = jsConsole.readFloat("#thirdNum");
+		if (first >= second) {
+			if (first>=third) {
+				jsConsole.writeLine("The first number is:" + first);
+				if (second>=third) {
+					jsConsole.writeLine("The second number is:" + second);
+					jsConsole.writeLine("The third number is:" + third);
+				}else{
+					jsConsole.writeLine("The second number is:" + third);
+					jsConsole.writeLine("The third number is:" + second);
+				}
+			}else{
+				jsConsole.writeLine("The first number is:" + third);
+				jsConsole.writeLine("The second number is:" + first);
+				jsConsole.writeLine("The third number is:" + second);
+			}
+		}else if(second >= third){
+			jsConsole.writeLine("The first number is:" + second);
+			if (first>=third) {
+				jsConsole.writeLine("The second number is:" + first);
+				jsConsole.writeLine("The third number is:" + third);
+			}else{
+				jsConsole.writeLine("The second number is:" + third);
+				jsConsole.writeLine("The third number is:" + first);
+			}
+		}else{
+			jsConsole.writeLine("The bigest number is:" + third);
+			jsConsole.writeLine("The second number is:" + second);
+				jsConsole.writeLine("The third number is:" + first);
+		}
+	}
+	</script>		  	
+</body>
+
+</html>

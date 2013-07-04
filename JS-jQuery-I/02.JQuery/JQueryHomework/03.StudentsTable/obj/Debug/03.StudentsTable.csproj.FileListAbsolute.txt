@@ -1,0 +1,5 @@
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\03.StudentsTable\bin\03.StudentsTable.dll
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\03.StudentsTable\bin\03.StudentsTable.pdb
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\03.StudentsTable\obj\Debug\03.StudentsTable.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\03.StudentsTable\obj\Debug\03.StudentsTable.dll
+C:\Users\user\Desktop\teleric\JS-LIB\02.JQuery\JQueryHomework\03.StudentsTable\obj\Debug\03.StudentsTable.pdb

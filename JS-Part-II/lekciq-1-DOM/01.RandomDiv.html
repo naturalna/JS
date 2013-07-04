@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<title>Generate random div elements</title>
+		<style type="text/css">
+			#wrapper{
+				min-height: 100%;
+				background:rgb(123,123,123);
+			}
+		</style>
+	</head>
+	<body>
+		<div id = "condition">
+			<p>Write a script that creates a number of div elements.</p>
+		</div>
+		<p>How much boxes do you want</p>
+		<input type="text" id = "userChoise">
+		<input type="button" value = "start" onclick ="onGenerateRandomDivs()">
+
+		<div id ="wrapper">
+		</div>
+		<script>
+			function clearOldTags(){
+			var contentDiv = document.getElementById("wrapper");
+			while (contentDiv.firstChild != null) contentDiv.removeChild(contentDiv.firstChild);
+			}
+			function onGenerateRandomDivs(){
+				clearOldTags();
+				var divsCount = parseInt(document.getElementById("userChoise").value,10);
+				var divsFragment = document.createDocumentFragment();
+
+				for (var i = 1; i <= divsCount; i++) {
+					var strongContentOfDiv = document.createElement("strong");
+					strongContentOfDiv.innerHTML = "div";
+
+					var divElement = document.createElement("div");
+					divElement.className = "newDivs";
+
+					divElement.appendChild(strongContentOfDiv);
+					generateStyle(divElement);
+					divsFragment.appendChild(divElement);
+				}
+
+				document.getElementById("wrapper").appendChild(divsFragment);
+				
+				function generateStyle(div){
+					div.style.position ="absolute";
+					div.style.width = generateDimensions();
+					div.style.height = generateDimensions();
+					div.style.background = generateBackgroundColor();
+					div.style.color =generateFontColor();
+					div.style.left = generateLeftPosition();
+					div.style.top = generateTopPosition();
+					div.style.borderStyle = "solid";
+					div.style.borderWidth = generateBorderWidth();
+					div.borderColor = generateBorderColor();
+					div.style.borderRadius = generateBorderRadius();
+				}
+
+				// this function will genarete random width and heigth foreach div
+				function generateDimensions(){
+					var dimension = parseInt((Math.random()*80) + 20,10);
+					return dimension;
+				}
+
+				function generateBackgroundColor(){
+					var red = parseInt(Math.random()*255,10);
+					var green = parseInt(Math.random()*255,10);
+					var blue = parseInt(Math.random()*255,10);
+					var color = "rgb("+red+","+green+","+blue+")";
+					return color + "";
+				}
+
+				function generateFontColor(){
+					var fontColor = generateBackgroundColor();
+					return fontColor;
+				}
+
+				function generateLeftPosition(){
+					var letfPosition =parseInt(Math.random()*(screen.width - 100),10);
+					return letfPosition;
+				}
+
+				function generateTopPosition(){
+					var topPosition = parseInt(Math.random()*(screen.height - 300),10);
+					return topPosition;
+				}
+
+				function generateBorderRadius(){
+					var borderRadius = parseInt(Math.random()*20,10);
+					return borderRadius + "%";
+				}
+
+				function generateBorderColor(){
+					var borderColor = generateBackgroundColor;
+					return borderColor+"";
+				}
+
+				function generateBorderWidth(){
+					var borderWidth = parseInt(Math.random()*10,10);
+					return borderWidth;
+				}
+		}			
+		</script>
+	</body>
+	
+</html>

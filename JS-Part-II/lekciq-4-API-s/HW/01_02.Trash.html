@@ -1,0 +1,228 @@
+<html>
+	<head>
+		<title></title>
+		<style>
+		#container{
+			width:500px;
+			height: 500px;
+			border: 2px solid black;
+		}
+		#closed{
+			width: 100px;
+			height:170px;
+			position: absolute;
+			top: 18px;
+			left: 10px;
+			z-index: 1;
+		}
+		#open{
+			width: 100px;
+			height:170px;
+			position: absolute;
+			top:18px;
+			left: 10px;	
+		}
+		#trash{
+			position: absolute;
+			top:50px;
+			left: 200px;
+		}
+		button{
+			margin-left: 520px;
+			width: 100px;
+			height: 30px;
+		}
+		#topList{
+			position: absolute;
+			left: 650px;
+			top:20px;
+			display: inline-block;
+			background: rgb(159, 159, 159);
+		}
+		</style>
+	</head>
+	<body>
+		<div id= "container" >
+			<img src="bucket.jpg" alt="bucket" id="closed"
+			ondrop="drop(event)" ondragover="allowDrop(event)"			
+			>
+			<img src="openBucket.jpg" alt="bucket" id ="open" ondrop="drop(event)" ondragover="allowDrop(event)"
+			ondragleave ="leaveDropArea(event)"
+			>
+			<button onclick ="startPlaing()">Start</button>
+		</div>
+		<div id ="topList">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<script>
+		function allowDrop(ev) {
+			ev.preventDefault();
+			img = document.getElementById("closed");
+			img.style.zIndex = "0";
+		}
+
+		function leaveDropArea(ev) {
+			closeBucket();
+		}
+
+		function drag(ev) {
+			ev.dataTransfer.setData("dragged-id", ev.target.id);
+		}
+
+		function drop(ev) {
+			ev.preventDefault();
+			var data = ev.dataTransfer.getData("dragged-id");
+			document.getElementById("container").removeChild(document.getElementById(data));
+			closeBucket();
+		}
+
+		function closeBucket() {
+			img = document.getElementById("closed");
+			img.style.zIndex = "1";
+		}
+
+		function reduceTrash() {
+
+			var trashCount = 5;
+			var frag = document.createDocumentFragment();
+			for (var i = 0; i < trashCount; i++) {
+
+				var newTrash = document.createElement("img");
+				newTrash.src = "trash.jpg";
+				newTrash.style.position = "absolute";
+				var leftPosition = generateRandomLeftPosition();
+				newTrash.style.left = leftPosition;
+				newTrash.style.top = generateRandomTopPosition(leftPosition);
+				newTrash.setAttribute("id", "img" + i);
+				newTrash.draggable = "true";
+				newTrash.addEventListener('dragstart', function(ev) {
+					drag(ev);
+				}, false);
+
+				frag.appendChild(newTrash);
+			}
+			var container = document.getElementById("container");
+			container.appendChild(frag);
+		}
+
+		function generateRandomLeftPosition() {
+			var position = Math.floor(Math.random() * 470 + 10);
+			return position;
+		}
+
+		function generateRandomTopPosition(positionLeft) {
+			if (positionLeft < 100) {
+				var position = Math.floor(Math.random() * 310 + 180);
+				return position;
+			} else {
+				var position = Math.floor(Math.random() * 470 + 10);
+				return position;
+			}
+		}
+
+		function startPlaing() {
+
+			var button = document.getElementsByTagName("button");
+			button[0].setAttribute("disabled", true);
+			reduceTrash();
+			var date = new Date();
+			var currentTime = date.getTime();
+			var playersName = "";
+			var winningTime = 0;
+			var timer = setInterval(function() {
+				var imgCounter = document.getElementsByTagName("img").length;
+				if (imgCounter === 2) {
+					var dateOfFinish = new Date();
+					var finishTime = dateOfFinish.getTime();
+					playersName = prompt("Enter your name");
+					winningTime = finishTime - currentTime;
+					clearInterval(timer);
+					lockalStorageSaver(playersName, winningTime);
+					refreshTopList();
+					button[0].disabled = false;	
+				}
+			}, 10);
+
+			
+			function lockalStorageSaver(playersName, time) {
+				time = isKeyExistAlready(playersName, time);
+				localStorage.setItem(playersName, time);
+				var len = localStorage.length;
+				if (len > 5) {
+					var itemForRomove = findMaxTime(len);
+					localStorage.removeItem(itemForRomove);
+				}
+			}
+
+			function isKeyExistAlready (playersName, time) {
+				//is the key existing
+				for (var i = 0; i < localStorage.length; i++) {
+					var existingKey = localStorage.key(i);
+					if (existingKey === playersName) {
+						if (localStorage.getItem(existingKey) < time){
+							time = localStorage.getItem(existingKey);
+							break;
+						}
+					}
+				}
+				return time;
+			}
+
+			function findMaxTime(len) {
+				var biggestWinTime = 0;
+				var keyBiggestWinTime ="";
+				for (var i = 0; i < len; i++) {
+					var key = localStorage.key(i);
+					var winTime = parseInt(localStorage.getItem(key));
+					if (biggestWinTime < winTime) {
+						biggestWinTime = winTime;
+						keyBiggestWinTime = key;
+					}
+				}
+				return keyBiggestWinTime;
+			}
+
+			function refreshTopList () {
+				
+				var arrOfPlayers =[];
+				var len = localStorage.length;
+
+				for (var i = 0; i < len; i++) {
+					var playerObj ={};
+					playerObj.playerName = localStorage.key(i);
+					playerObj.score = localStorage.getItem(playerObj.playerName);
+					arrOfPlayers.push(playerObj);
+				}
+
+				//sort objects
+				arrOfPlayers.sort(customSort);
+				var topListArr = document.querySelectorAll("#topList li");
+
+				for (var j = 0; j < 5; j++) {
+					topListArr[j].innerHTML = "";
+					topListArr[j].innerHTML = j+1 +" - Player : " + arrOfPlayers[j].playerName +
+					" Score: " + arrOfPlayers[j].score;
+				}
+
+				function customSort (scoreA, scoreB) {
+					if (parseInt(scoreA.score,10) > parseInt(scoreB.score,10)) 
+						{
+							return 1;
+						}
+					if (parseInt(scoreA.score,10) < parseInt(scoreB.score,10)) 
+						{
+							return -1;
+						}
+					return 0;
+				}
+			}
+		}
+		</script>
+	</body>
+</html>

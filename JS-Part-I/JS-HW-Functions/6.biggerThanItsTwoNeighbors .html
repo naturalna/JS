@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Number in array and neighbors </title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+		<input type="button" onclick ="wordOcc(testFunc())" value="Times">
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+	function wordOcc(testFunc) 
+	{
+		//array of numbers
+		var position = 3;
+		if (position - 1 >= 0 && position + 1 < testFunc.length) 
+		{
+			if (testFunc[position-1] < testFunc[position]
+				&& testFunc[position + 1] < testFunc[position]) 
+			{
+				jsConsole.writeLine("It is bigger");
+				return "yes";
+			}else{
+				jsConsole.writeLine("It is not bigger");
+				return "No";
+			}
+		}else{
+			jsConsole.writeLine("Can't be checked. ");
+			return -1;
+		}
+	}	
+	//random generator for array of integers
+	function testFunc()
+	{
+		var testArr=[];
+		for (var i = 0; i < 25; i++) {
+			testArr[i] = Math.floor(100*Math.random());
+		}
+		jsConsole.writeLine(testArr.join(", "));
+		return testArr;
+	}
+	</script>			  
+</body>
+</html>

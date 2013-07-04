@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>03. Implement a image slider control using Prototypal OOP</title>
+		<style>
+			#smallImageHolder{
+				border: 1px solid black;
+				background:rgb(159,159,159);
+				margin-left:10%;
+				visibility: visible;
+				width:67%;
+				height: 100px;
+				overflow: hidden;
+			}
+			#larrow{
+				width:7%;
+				height: 7%;
+			}
+			#rarrow{
+				width: 7%;
+				height: 7%;
+				margin-left: 85%;
+			}
+			#bigHolder{
+        		position: absolute;
+        		left: 33%;
+        		top :33%;
+        		min-width: 400px;
+        		min-height: 400px;
+        		max-width: 400px;
+        		max-height: 400px;
+        		overflow: hidden;
+			}
+
+		</style>
+		
+	</head>
+	<body>
+		<div id = "smallImageHolder">
+			<img src="img/smallImg/sbonboni1.jpg" alt="bonboni" id = "bonbon1" title ="bonbon1">
+			<img src="img/smallImg/sbonboni2.jpg" alt="bonboni" id = "bonbon2" title ="bonbon2">
+			<img src="img/smallImg/sbonboni3.jpg" alt="bonboni" id = "bonbon3" title ="bonbon3">
+			<img src="img/smallImg/sbonboni4.jpg" alt="bonboni" id = "bonbon4" title ="bonbon4">
+			<img src="img/smallImg/sbonboni5.jpg" alt="bonboni" id = "bonbon5" title ="bonbon5">
+			<img src="img/smallImg/sbonboni6.jpg" alt="bonboni" id = "bonbon6" title ="bonbon6">
+			<img src="img/smallImg/sbonboni7.jpg" alt="bonboni" id = "bonbon7" title ="bonbon7">
+			<img src="img/smallImg/sbonboni8.jpg" alt="bonboni" id = "bonbon8" title ="bonbon8">
+			
+		</div>
+		<div id ="bigHolder"></div>
+		<img src="img/LeftArrow.png" alt="LeftArrow" id="larrow">
+		<img src="img/RightArrow.png" alt="LeftArrow" id="rarrow">
+		
+		<script type="text/javascript" src = "03.ImageSlider.js"></script>
+	</body>
+</html>

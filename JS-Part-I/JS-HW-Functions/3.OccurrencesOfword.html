@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>the occurrences of word</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+		<input type="button" onclick ="wordOcc()" value="Times">
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+	function wordOcc(trueOrFalse) 
+	{
+		var text ="text in hskdfk jsbdk in word kjgd in IN kjdd In tgbn";
+		var word = "in";
+		  	function wordOccCaseInsensitive()
+		  	{
+	      		var text1 = text.toLowerCase(); 
+		  		var newWord = word.toLowerCase();
+          		var count=0;
+          		var n;
+            
+          		do
+          		{
+          			n = -1;
+          			n = text1.indexOf(newWord);
+            		if(n != -1)
+            		{
+              		count++;
+              		text1 = text1.substr(n+newWord.length,text1.length);
+            		}
+            	}while(n != -1);
+            
+             	return count;
+        	}	
+			function wordOccCaseSensitive()
+			{
+				var count=0;
+          		var n;
+            
+          		do
+          		{
+          			n = -1;
+          			n = text.indexOf(word);
+            		if(n != -1)
+            		{
+              		count++;
+              		text = text.substr(n+word.length,text.length);
+            		}
+            	}while(n != -1);
+            
+             	return count;
+			}
+			//for secnd func
+			switch(trueOrFalse)
+			{
+				case true: return wordOccCaseInsensitive();
+				break;
+				case false:return wordOccCaseSensitive();
+				break;
+			}
+		//call the override"" function
+		jsConsole.writeLine(wordOcc(true));
+		jsConsole.writeLine(wordOcc(false));	
+	}										
+	</script>			  
+</body>
+</html>

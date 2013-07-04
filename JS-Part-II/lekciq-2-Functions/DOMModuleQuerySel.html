@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>Create a module for working to work with DOM. The module should have the following functionality</title>
+	</head>
+	<body>
+		<div>
+			<p>Add element to parent element by given selector.</p>
+			<p>Remove element from the DOM  by given selector.</p>
+			<p>Attach event to given selector by given event type and event hander</p>
+			<p>Add elements to buffer, which appends them to the DOM when their for some selector count becomes 100</p>
+			<p>The buffer contains elements for each selector it gets Get elements by CSS selector. The module should reveal only the methods</p>
+		</div>
+		<div id = "wrapper"></div>
+		<script>
+		var domModule = (function() {
+			var selectTag;
+			function appendChild(tag, selector){
+				var selectedSelector = searchSelector(selector);
+				selectTag = tag;
+				
+				
+			}
+
+			function appendSearch(){
+				switch(){
+					case Id: 
+						var selectorNameForId = selector.slice(1, selector.length);
+						document.getElementById(selectorNameForId).appendChild(tag); break;
+					case Class: 
+						var selectorNameForClass = selector.slice(1, selector.length);
+						document.getElementByClassName(selectorNameForClass).appendChild(tag); break;
+					case First:
+						var lastIndexOfTag = selector.indexOf(":");
+						var tagForChange = selector.slice(0,lastIndexOfTag);//li
+					 break;
+					case Tag: break;
+					default : alert("searchSelector function is broken !!");
+
+				}
+			}
+
+			function appendFromEachTag(tagForChange){
+				var allTags = document.getElementsByTagName(tagForChange);
+				var allTagsLength = allTags.length;
+				for (var i = 0; i < allTagsLength; i++) {
+					allTags[i].appendChild(selectTag);
+				}
+			}
+
+		}());
+		// call function
+		var div = document.createElement("div");
+		//change the div
+		domModule.appendChild(div,"#wrapper");
+		//remove the first li from each ul
+		domModule.removeChild("ul","li:first"); 
+
+		function searchSelector (selectorString) {
+			var firstChar = selectorString[0];
+			var isFirstChildSelect = selectorString.indexOf(":");
+			//id
+			if (firstChar === "#") { return "Id"}
+			//class
+			else if (firstChar === ".") { return "Class"}
+			//first
+			else if (isFirstChildSelect !== -1) { return : "First"}
+				else return "Tag"
+		}
+		
+
+
+		</script>
+	</body>
+</html>

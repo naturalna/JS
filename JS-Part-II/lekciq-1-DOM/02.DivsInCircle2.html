@@ -1,0 +1,98 @@
+<html>
+	<head>
+		<title>Five divs in a circle</title>
+		<style type="text/css">
+			#wrapper{
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				left: 400px;
+				border: solid 2px black;
+				border-radius: 150px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id = "condition">
+			<p>Write a script that creates 5 div elements and moves them in circular path with interval of 100 millisecond</p>
+		</div>
+		<input type="button" value = "start" onclick ="startMoveInCircle()">
+
+		<div id ="wrapper">
+		</div>
+		<script>
+			//xM and yM are the center of the circle
+			var xM = 85;
+			var yM = 85;
+			var radius = 100;
+			var div1 = document.createElement("div");
+			createStyle(div1);
+			div1.style.background = "red";
+			var div2 = document.createElement("div");
+			createStyle(div2);
+			div2.style.background = "green";
+			var div3 = document.createElement("div");
+			createStyle(div3);
+			div3.style.background ="blue";
+			var div4 = document.createElement("div");
+			createStyle(div4);
+			div4.style.background = "yellow";
+			var div5 = document.createElement("div");
+			createStyle(div5);
+			div5.style.background = "black";
+			var timer;
+			var interval = 0;
+			var refreshTime = 100;
+			function startMoveInCircle(){
+				timer = setInterval(function() {
+				//finding point in circle by Parametric representation of a circle
+				//http://bg.wikipedia.org/wiki/%D0%9E%D0%BA%D1%80%D1%8A%D0%B6%D0%BD%D0%BE%D1%81%D1%82
+
+				var divFragment = document.createDocumentFragment();
+				div1.style.left = shiftLeftPosition(0, interval);
+				div1.style.top = shiftTopPosition(0, interval);
+				divFragment.appendChild(div1);
+				div2.style.left = shiftLeftPosition(72, interval);
+				div2.style.top = shiftTopPosition(72, interval);
+				divFragment.appendChild(div2);
+				div3.style.left = shiftLeftPosition(144, interval);
+				div3.style.top = shiftTopPosition(144, interval);
+				divFragment.appendChild(div3);
+				div4.style.left = shiftLeftPosition(216, interval);
+				div4.style.top = shiftTopPosition(216, interval);
+				divFragment.appendChild(div4);
+				div5.style.left = shiftLeftPosition(288, interval);
+				div5.style.top = shiftTopPosition(288, interval);
+				divFragment.appendChild(div5);
+				document.getElementById("wrapper").appendChild(divFragment);
+				//on each 1ms change the start interval with 36 degrees so for 100 ms
+				// the div make 1 full tour around the circle
+				interval = interval + 3.6;
+				// if you want to see the moving better just make refreshTime 100
+				}, refreshTime);
+			}
+
+			function createStyle(div){
+				div.style.width = 30;
+				div.style.height = 30;
+				div.style.borderStyle ="solid";
+				div.style.borderWidth = 1;
+				div.style.position ="absolute";
+			}	
+
+			// This functions will shift the positions of the divs with 1 cell and the last position
+			// will be removed and put at first cell of the container (array)
+			function shiftLeftPosition(cosFiStart, interval){
+				var positionLeft = xM + radius * Math.cos((cosFiStart + interval) * (Math.PI / 180));
+				return positionLeft;
+			}	
+
+			function shiftTopPosition(sinFiStart, interval){
+				var positionTop = yM + radius * Math.sin((sinFiStart + interval) * (Math.PI / 180));
+				return positionTop;
+			}
+
+		</script>
+	</body>
+	
+</html>

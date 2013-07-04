@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>most frequent number in array </title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+	<a href="#" onclick="searchFrequent()">Start</a>
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>
+	function order(x,y){
+		if (x > y) 
+		{
+			return -1;
+		}
+		else
+		{
+			return 1;
+		}
+	}							
+	function start() {
+			var arrayOne = [-5,1,7,-2,4,11,4,-5,-5];
+			arrayOne.sort(order);
+			jsConsole.writeLine(arrayOne.join(','));
+			return arrayOne;
+		}	
+		function searchFrequent()
+		{
+			var count = 1;
+			var maxCount = 0;
+			var number = 0;
+			var arrayOne = start();
+			for (var i = 0; i < arrayOne.length-1; i++) {
+				if (arrayOne[i] == arrayOne[i+1]) 
+				{
+					count++;
+				}
+				else
+				{
+						
+					count = 1;
+				}
+				if (count > maxCount) 
+				{
+					maxCount = count;
+					number = arrayOne[i];
+				}
+			}
+			jsConsole.writeLine("Element : " + number);
+			jsConsole.writeLine("Count : " + maxCount);
+		}								
+	</script>			  
+</body>
+</html>

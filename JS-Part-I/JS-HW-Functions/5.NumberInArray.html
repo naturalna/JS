@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Number in array</title>
+	<link href="styles/js-console.css" rel="stylesheet" />
+	<style>
+		input[type=text]{
+			border:1px solid black;
+			padding:5px 15px;
+			background-color:black;
+			color:white;
+			font-family:Consolas;		   
+			margin-bottom:5px;
+		}
+
+		a{
+			color:black;
+			border:1px solid black;
+			padding:5px 15px;						
+			text-decoration:none;	   
+			display:inline-block;		 
+			margin: 15px 0;
+		}
+
+		a:hover{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+<body>	
+		<input type="button" onclick ="wordOcc(testFunc())" value="Times">
+	<div id="console">
+	</div>
+	<script src="scripts/js-console.js">	  
+	</script>		  
+	<script>									
+	function wordOcc(testFunc) 
+	{
+		//array of numbers
+		//var ArrNumber = [1,2,3,4,6,3,-3];
+		var number = 3;
+		var count = 0;
+		for (var i = 0; i < testFunc.length; i++)
+		 {
+				if (testFunc[i] === number) 
+				{
+					count++;
+				}
+		}
+			jsConsole.writeLine("3-->"+count + " times");
+	}	
+	//I am not very sure what the test func must be
+	function testFunc()
+	{
+		var testArr=[];
+		for (var i = 0; i < 25; i++) {
+			testArr[i] = Math.floor(100*Math.random());
+		}
+		jsConsole.writeLine(testArr.join(", "));
+		return testArr;
+	}
+	</script>			  
+</body>
+</html>
